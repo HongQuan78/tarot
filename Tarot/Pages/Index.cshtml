@@ -8,31 +8,106 @@
 
 <div class="row my-4">
     <div class="col-6 text-end">
-        <a class="btn btn-lg btn-custom" style="background-color:#3c393c" href="#">Tarot Online</a>
+        <a class="btn btn-lg btn-custom" style="background-color:#3c393c;color:#fcb831" href="/index">Tarot Online</a>
     </div>
     <div class="col-6">
-        <a class="btn btn-lg btn-custom" style="background-color:#3c393c" href="#">Tarot Readers</a>
+        <a class="btn btn-lg btn-custom" style="background-color:#3c393c" href="/tarotreader">Tarot Readers</a>
     </div>
 </div>
 <div class="row">
-    
+
     <div class="col-4 text-end" style="margin-left:30px;">
         <label class="card-choose-lable text-center">Chọn Bộ Bài</label>
     </div>
     <div class="col-6">
         <div class="select-container">
             <select class="form-select-lg text-white" style=" background-color: #3c393c">
-                <option>Select an option</option>
-                <option>Option 1</option>
-                <option>Option 2</option>
-                <option>Option 3</option>
+                <option selected>Crystal Visions</option>
+                <option>English Magic Tarot</option>
+                <option>Etteilla</option>
             </select>
         </div>
     </div>
-     
+
+</div>
+
+<div class="not-selected-card-container" style="margin: 30px;margin-left:200px">
+    <div class="choose-card">
+        <div class="circle">
+            <p class="choose-text">Chọn bài</p>
+        </div>
+    </div>
+    <div class="card">
+        <img src="~/images/main-back.png" />
+    </div>
+    <div class="card">
+        <img src="~/images/main-back.png" />
+    </div>
+    <div class="card">
+        <img src="~/images/main-back.png" />
+    </div>
+    <div class="card">
+        <img src="~/images/main-back.png" />
+    </div>
+    <div class="card">
+        <img src="~/images/main-back.png" />
+    </div>
+    <div class="card">
+        <img src="~/images/main-back.png" />
+    </div>
+    <div class="card">
+        <img src="~/images/main-back.png" />
+    </div>
+    <div class="card">
+        <img src="~/images/main-back.png" />
+    </div>
+    <div class="card">
+        <img src="~/images/main-back.png" />
+    </div>
+    <div class="card">
+        <img src="~/images/main-back.png" />
+    </div>
+    <div class="card">
+        <img src="~/images/main-back.png" />
+    </div>
+    <div class="card">
+        <img src="~/images/main-back.png" />
+    </div>
+    <div class="card">
+        <img src="~/images/main-back.png" />
+    </div>
+    <div class="card">
+        <img src="~/images/main-back.png" />
+    </div>
+    <div class="card">
+        <img src="~/images/main-back.png" />
+    </div>
+    <div class="card">
+        <img src="~/images/main-back.png" />
+    </div>
+</div>
+
+<div class="selected-card-container my-3">
+    <div class="d-flex justify-content-center" id="selected-card-block">
+        <img src="~/images/main-back.png" />
+        <img src="~/images/main-back.png" />
+        <img src="~/images/main-back.png" />
+    </div>
+</div>
+<div class="row" style="margin: 100px">
+    <div class=" text-container">
+        <p style="color:#FCB831">
+            <strong>Tarot là gì? Nguồn gốc bài Tarot</strong><br />
+
+            Tarot là các lá bài dùng để xem bói, bắt đầu xuất hiện tại Châu Âu vào cuối thế kỷ 14. Bói bài Tarot sẽ giúp người xem lý giải được cuộc sống hiện tại, điềm báo sắp tới. Người bói cần biết cách sắp xếp các lá bài và giải mã chúng. Mỗi một lá bài trong Tarot đều hàm chứa ý nghĩa riêng biệt. Độ chính xác của việc bói bài Tarot đã được kiểm chứng.
+            <br />
+            <strong>Cấu tạo bài Tarot</strong><br />
+            Tarot là gì? Bài Tarot có tổng cộng 78 lá được chia thành 2 nhóm chính. Bao gồm Lá ẩn chính (Major Arcana) và Lá ẩn phụ (Minor Arcana)............
+        </p>
+    </div>
 </div>
 <style>
-    .btn-custom{
+    .btn-custom {
         width: 50%;
         height: 100%;
         color: white;
@@ -41,34 +116,79 @@
         border-radius: 10px;
     }
 
-.img-container {
-            background-image: url("images/main.png");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            height: 50vh;
-        }
+    .img-container {
+        background-image: url("images/main.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: 50vh;
+    }
 
-    .card-choose-lable{
+    .card-choose-lable {
         font-size: 20px;
         font-weight: bold;
         color: white;
         background-color: #3c393c;
-        width:150px;
-        padding:10px;
+        width: 150px;
+        padding: 10px;
         border-radius: 10px;
     }
 
     .select-container {
-        width:80%;
+        width: 80%;
     }
 
-    .select-container select{
+        .select-container select {
             border-radius: 10px;
             font-size: 20px;
             font-weight: bold;
             color: white;
-            width:100%;
+            width: 100%;
+        }
+
+    #selected-card-block img:hover {
+        cursor: pointer;
     }
 
+    .not-selected-card-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .card {
+        width: 100px; /* Điều chỉnh kích thước của lá bài */
+        height: 150px;
+        margin-right: -50px; /* Khoảng cách giữa các lá bài */
+        position: relative;
+        background-color: transparent;
+    }
+
+        .card img {
+            max-width: 100%;
+        }
+
+    .choose-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background-color: #3c393c;
+        margin-left: 20px;
+        margin-right: 40px;
+        height: 100px;
+        border-radius: 50%;
+        width: 100px;
+    }
+
+    .choose-text {
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        padding-top: 35px;
+    }
+
+    .choose-card:hover{
+        cursor: pointer;
+    }
 </style>

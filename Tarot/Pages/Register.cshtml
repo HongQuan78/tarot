@@ -1,0 +1,104 @@
+﻿@page
+@model Tarot.Pages.RegisterModel
+@{
+}
+
+<div class="row my-3">
+    <img src="~/images/logo.png" style="max-width:10%" class="text-center mx-auto" />
+</div>
+<div class="row mx-auto">
+    <p class="text-center" style="color:#F4DE11"><i>Đăng Ký Tài Khoản</i></p>
+</div>
+<div class="row">
+    <div class="form-container mx-auto" style="width:70%">
+        <form class="text-center" method="post">
+            <div class="form-group d-flex align-items-center my-2">
+                <label for="fullName" class="custom-label">Họ và tên <span style="color: #F10A0A">(*)</span></label>
+                <input type="text" id="fullName" class="form-control mx-auto custom-input" placeholder="Họ và tên" />
+            </div>
+            <div class="form-group d-flex align-items-center my-2">
+                <label for="dob" class="custom-label">Ngày tháng năm sinh <span style="color: #F10A0A">(*)</span></label>
+                <input type="date" id="dob" class="form-control mx-auto custom-input" />
+            </div>
+            <div class="form-group d-flex align-items-center my-2">
+                <label for="gender" class="custom-label">Giới tính <span style="color: #F10A0A">(*)</span></label>
+                <div class="custom-input">
+                    <div class="form-check form-check-inline">
+                        <input type="radio" id="male" name="gender" class="form-check-input" value="male">
+                        <label for="male" class="form-check-label" style="margin-right: 10px;">Nam</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" id="female" name="gender" class="form-check-input" value="female">
+                        <label for="female" class="form-check-label" style="margin-right: 10px;">Nữ</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" id="other" name="gender" class="form-check-input" value="other">
+                        <label for="other" class="form-check-label" style="margin-right: 10px;">Khác</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group d-flex align-items-center my-2">
+                <label for="usernameInput" class="custom-label">Username <span style="color: #F10A0A">(*)</span></label>
+                <input type="text" id="usernameInput" class="form-control mx-auto custom-input" placeholder="Username" />
+            </div>
+            <div class="form-group d-flex align-items-center my-2">
+                <label for="passwordInput" class="custom-label">Password <span style="color: #F10A0A">(*)</span></label>
+                <input type="password" id="passwordInput" class="form-control mx-auto custom-input" placeholder="Password" />
+            </div>
+            <div class="form-group d-flex align-items-center my-2">
+                <label for="verifyPassword" class="custom-label">Verify Password <span style="color: #F10A0A">(*)</span></label>
+                <input type="password" id="verifyPassword" class="form-control mx-auto custom-input" placeholder="Verify Password" />
+            </div>
+            <div class="form-group d-flex align-items-center my-2">
+                <label for="emailInput" class="custom-label">Email <span style="color: #F10A0A">(*)</span></label>
+                <input type="email" id="emailInput" class="form-control mx-auto custom-input" placeholder="Email" />
+            </div>
+            <div class="form-group d-flex align-items-center my-2">
+                <label for="phoneInput" class="custom-label">Số điện thoại <span style="color: #F10A0A">(*)</span></label>
+                <input type="tel" id="phoneInput" class="form-control mx-auto custom-input" placeholder="Số điện thoại" />
+            </div>
+            <button class="btn btn-lg btn-custom my-3">Đăng Ký</button>
+            <div class="d-fex text-decoration-underline align-content-between">
+                <a href="#" class="text-white" style="margin-right: 100px!important">Đăng Nhập</a>
+                <a href="#" class="text-white">Quên mật khẩu?</a>
+            </div>
+        </form>
+    </div>
+</div>
+<style>
+    .btn-custom{
+        font-size:20px;
+        font-weight:bold;
+        color: #fcb831 !important;
+        background-color: #8e05c2 !important;
+        width: 30%;
+        border-radius: 30px;
+    }
+
+    .form-group {
+        display: flex;
+        align-items: center; /* Vertically aligns items in the center */
+        justify-content: start; /* Aligns items to the start of the container */
+        margin-bottom: 20px; /* Space between each form group */
+    }
+
+    .custom-label {
+        background-color: #3E065F;
+        color: #f4de11;
+        padding: 10px 15px;
+        border-radius: 10px;
+        width: 200px;
+        text-align: center;
+        margin-right: 50px; /* Space between label and input */
+    }
+
+    .form-container .form-group .custom-input {
+        color: #f4de11;
+        background-color: #3E065F;
+        width: 500px !important;
+        padding: 5px 10px !important;
+        border-radius: 5px !important;
+        flex-grow: 1 !important;
+    }
+
+</style>

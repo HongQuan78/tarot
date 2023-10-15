@@ -4,7 +4,9 @@
 }
 
 <div class="row">
-    <div class="col-6"></div>
+    <div class="col-6">
+        <img src="images/login-img.png" class="img-login" style="max-width:80%;max-height:100%" />
+    </div>
     <div class="col-6 text-center">
         <div class="text-center">
             <img src="images/logo-small.png" style="max-width:30%" />
@@ -14,8 +16,13 @@
         </div>
         <div class="form-container">
             <form class="text-center" method="post">
-                <input type="text" class="form-control" style="width:50%" />
-                <input type="text" class="form-control my-3" style="width:50%" />
+                <input type="text" placeholder="Username" class="form-control mx-auto" style="width:50%" />
+                <input type="text" placeholder="Password" class="form-control my-3 mx-auto" style="width:50%" />
+                <div class="my-3">
+                    <input type="checkbox"/>
+                    <lable class="text-decoration-underline" style="color:#fcb831;margin-right:18%">Nhớ mật khẩu</lable>
+                    <a href="#" class="text-decoration-underline" style="color:#fcb831;">Quên mật khẩu?</a>
+                </div>
                 <button class="btn btn-lg btn-custom">Đăng Nhập</button>
             </form>
         </div>
@@ -34,5 +41,9 @@
         background-color: #700b97 !important;
         width: 50%;
         border-radius: 30px;
+    }
+
+    .img-login{
+        padding-left: 300px;
     }
 </style>

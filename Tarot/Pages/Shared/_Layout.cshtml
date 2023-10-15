@@ -3,16 +3,17 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Tarot</title>
+    <title>@ViewData["Title"] Tarot </title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Tarot.styles.css" asp-append-version="true" />
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico">
 </head>
 <body style="background-color:black">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-black">
             <div class="container-fluid">
-                <a class="navbar-brand">
+                <a class="navbar-brand" href="/">
                     <img src="images/logo-small.png" style="max-width:30%" />
                     Tarot.today
                 </a>
@@ -22,11 +23,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active text-decoration-underline" aria-current="page" href="/home">Tarot Meeting</a>
+                            <a class="nav-link active text-decoration-underline" aria-current="page" href="/">Tarot Meeting</a>
                         </li>
                     </ul>
                     <div class="d-flex align-content-end">
-                        <a class="btn px-2 text-white text-decoration-underline" href="/login">Đăng Kí</a>
+                        <a class="btn px-2 text-white text-decoration-underline" href="/register">Đăng Kí</a>
                         <a class="btn text-white px-2 text-decoration-underline" href="/login">Đăng Nhập</a>
                     </div>
                 </div>
