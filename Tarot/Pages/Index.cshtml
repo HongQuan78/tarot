@@ -3,8 +3,72 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="img-container">
 </div>
+
+<div class="row my-4">
+    <div class="col-6 text-end">
+        <a class="btn btn-lg btn-custom" style="background-color:#3c393c" href="#">Tarot Online</a>
+    </div>
+    <div class="col-6">
+        <a class="btn btn-lg btn-custom" style="background-color:#3c393c" href="#">Tarot Readers</a>
+    </div>
+</div>
+<div class="row">
+    
+    <div class="col-4 text-end" style="margin-left:30px;">
+        <label class="card-choose-lable text-center">Chọn Bộ Bài</label>
+    </div>
+    <div class="col-6">
+        <div class="select-container">
+            <select class="form-select-lg text-white" style=" background-color: #3c393c">
+                <option>Select an option</option>
+                <option>Option 1</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+            </select>
+        </div>
+    </div>
+     
+</div>
+<style>
+    .btn-custom{
+        width: 50%;
+        height: 100%;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 10px;
+    }
+
+.img-container {
+            background-image: url("images/main.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+        }
+
+    .card-choose-lable{
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+        background-color: #3c393c;
+        width:150px;
+        padding:10px;
+        border-radius: 10px;
+    }
+
+    .select-container {
+        width:80%;
+    }
+
+    .select-container select{
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            width:100%;
+    }
+
+</style>

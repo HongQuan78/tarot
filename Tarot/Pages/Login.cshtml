@@ -1,0 +1,38 @@
+﻿@page
+@model Tarot.Pages.LoginModel
+@{
+}
+
+<div class="row">
+    <div class="col-6"></div>
+    <div class="col-6 text-center">
+        <div class="text-center">
+            <img src="images/logo-small.png" style="max-width:30%" />
+        </div>
+        <div class="text-center">
+            <label class="my-5" style="color:#700b97; font-size:30px">Hello Reader</label>
+        </div>
+        <div class="form-container">
+            <form class="text-center" method="post">
+                <input type="text" class="form-control" style="width:50%" />
+                <input type="text" class="form-control my-3" style="width:50%" />
+                <button class="btn btn-lg btn-custom">Đăng Nhập</button>
+            </form>
+        </div>
+    </div>
+</div>
+<style>
+    input {
+        background-color: #700b97 !important;
+        color: #fcb831 !important;
+    }
+
+    .btn-custom{
+        font-size:20px;
+        font-weight:bold;
+        color: #fcb831 !important;
+        background-color: #700b97 !important;
+        width: 50%;
+        border-radius: 30px;
+    }
+</style>

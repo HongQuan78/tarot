@@ -8,28 +8,48 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Tarot.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body style="background-color:black">
     <header>
-        <nav>
-
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+            <div class="container-fluid">
+                <a class="navbar-brand">
+                    <img src="images/logo-small.png" style="max-width:30%" />
+                    Tarot.today
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active text-decoration-underline" aria-current="page" href="/home">Tarot Meeting</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex align-content-end">
+                        <a class="btn px-2 text-white text-decoration-underline" href="/login">Đăng Kí</a>
+                        <a class="btn text-white px-2 text-decoration-underline" href="/login">Đăng Nhập</a>
+                    </div>
+                </div>
+            </div>
         </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Tarot - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    </header>
+    <main role="main" class="pb-3" style="margin-bottom: 100px">
+        @RenderBody()
+    </main>
+
+    <footer class="footer text-white" style="background-color: #3e065f">
+        <div class="row">
+            <div class="col-3">
+            </div>
         </div>
     </footer>
+    <style>
 
+    </style>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
