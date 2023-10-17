@@ -9,7 +9,9 @@ public partial class Deck
 
     public string? Type { get; set; }
 
-    public virtual ICollection<ReadingHistory> ReadingHistories { get; set; } = new List<ReadingHistory>();
+    public string? ImageUrl { get; set; }
 
-    public virtual ICollection<TarotCard> Cards { get; set; } = new List<TarotCard>();
+    public virtual ICollection<CardImage> CardImages { get; set; } = new List<CardImage>();
+
+    public virtual ICollection<ReadingHistory> ReadingHistories { get; set; } = new List<ReadingHistory>();
 }

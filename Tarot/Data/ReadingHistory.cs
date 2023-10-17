@@ -17,6 +17,8 @@ public partial class ReadingHistory
 
     public string? Notes { get; set; }
 
+    public decimal? Price { get; set; }
+
     public virtual Deck? Deck { get; set; }
 
     public virtual Reader? Reader { get; set; }

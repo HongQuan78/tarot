@@ -2,7 +2,9 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+    var deckId = 0;
 }
+
 <div class="img-container">
 </div>
 
@@ -21,80 +23,57 @@
     </div>
     <div class="col-6">
         <div class="select-container">
-            <select class="form-select-lg text-white" style=" background-color: #3c393c">
-                <option selected>Crystal Visions</option>
-                <option>English Magic Tarot</option>
-                <option>Etteilla</option>
+            <select class="form-select-lg text-white" style="background-color: #3c393c" id="deckSelector">
+                @for (int i = 0; i < Model.deckList.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        deckId = Model.deckList[i].DeckId;
+                        <option selected value="@Model.deckList[i].ImageUrl">@Model.deckList[i].Type</option>
+                    }
+                    else
+                    {
+                        deckId = Model.deckList[i].DeckId;
+                        <option value="@Model.deckList[i].ImageUrl">@Model.deckList[i].Type</option>
+                    }
+                }
             </select>
         </div>
     </div>
 
 </div>
 
-<div class="not-selected-card-container" style="margin: 30px;margin-left:200px">
+<div class="not-selected-card-container" style="margin: 30px; margin-left: 200px; margin-right: 200px; width: 80%;">
     <div class="choose-card">
         <div class="circle">
             <p class="choose-text">Chọn bài</p>
         </div>
     </div>
-    <div class="card">
-        <img src="~/images/main-back.png" />
-    </div>
-    <div class="card">
-        <img src="~/images/main-back.png" />
-    </div>
-    <div class="card">
-        <img src="~/images/main-back.png" />
-    </div>
-    <div class="card">
-        <img src="~/images/main-back.png" />
-    </div>
-    <div class="card">
-        <img src="~/images/main-back.png" />
-    </div>
-    <div class="card">
-        <img src="~/images/main-back.png" />
-    </div>
-    <div class="card">
-        <img src="~/images/main-back.png" />
-    </div>
-    <div class="card">
-        <img src="~/images/main-back.png" />
-    </div>
-    <div class="card">
-        <img src="~/images/main-back.png" />
-    </div>
-    <div class="card">
-        <img src="~/images/main-back.png" />
-    </div>
-    <div class="card">
-        <img src="~/images/main-back.png" />
-    </div>
-    <div class="card">
-        <img src="~/images/main-back.png" />
-    </div>
-    <div class="card">
-        <img src="~/images/main-back.png" />
-    </div>
-    <div class="card">
-        <img src="~/images/main-back.png" />
-    </div>
-    <div class="card">
-        <img src="~/images/main-back.png" />
-    </div>
-    <div class="card">
-        <img src="~/images/main-back.png" />
-    </div>
-    <div class="card">
-        <img src="~/images/main-back.png" />
-    </div>
+    @for (int i = 0; i < Model.cardList.Count; i++)
+    {
+        <div class="card-container">
+            <div class="text-white card" data-meaning="Card @Model.cardList[i].Name nói rằng @Model.cardList[i].Meanings.FirstOrDefault()?.Meaning1").">
+                <!-- This is just a placeholder -->
+                <div class="card-back">
+                    <img src="~/images/cardback/riderwaite.jpg" alt="Card Back" />
+                </div>
+                <div class="card-front">
+                    <img src="~/images/cards/@Model.cardList[i].CardImages.SingleOrDefault(x=>x.DeckId==deckId && x.CardId == Model.cardList[i].CardId)?.ImageUrl" alt="Card Front" />
+                </div>
+            </div>
+        </div>
+    }
 </div>
+
 
 <div class="selected-card-container my-3">
     <div class="d-flex justify-content-center" id="selected-card-block">
-        <img src="~/images/main-back.png" />
-        <img src="~/images/main-back.png" />
-        <img src="~/images/main-back.png" />
+    </div>
+    <div id="meanings-container" class="row mt-5">
+        <div class="col text-center">
+            // Meaning output
+            <div id="meanings-output"></div>
+        </div>
     </div>
 </div>
 <div class="row" style="margin: 100px">
@@ -180,18 +159,126 @@
         margin-left: 20px;
         margin-right: 40px;
         height: 100px;
-        border-radius: 50%;
         width: 100px;
+        border-radius: 50%;
+    }
+
+    .circle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%; /* same as the parent .choose-card width */
+        height: 100%; /* same as the parent .choose-card height */
+        border-radius: 50%;
     }
 
     .choose-text {
         font-size: 18px;
         font-weight: bold;
         color: white;
-        padding-top: 35px;
     }
+
 
     .choose-card:hover{
         cursor: pointer;
     }
+
+    .card-container {
+        perspective: 1000px;
+        width: 200px; /* Adjust width as needed */
+        height: 300px; /* Adjust height as needed */
+    }
+
+    .card {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transition: transform 0.5s;
+        transform-style: preserve-3d;
+        cursor: pointer;
+    }
+
+    .card-back, .card-front {
+        position: absolute;
+        top: 0;
+        left: 0;
+        backface-visibility: hidden;
+        width: 100%;
+        height: 100%;
+    }
+
+    .card-front {
+        transform: rotateY(180deg);
+    }
+
+    .card.flipped {
+        transform: rotateY(180deg);
+    }
+
 </style>
+
+<script>
+    let flippedCount = 0; // To keep track of how many cards have been flipped
+    let meanings = [];    // To store the meanings of the flipped cards as an array
+
+    document.querySelectorAll('.not-selected-card-container .card').forEach(function (card) {
+        card.addEventListener('click', function () {
+            let selectedCardBlock = document.querySelector('#selected-card-block');
+
+            // Check if already 3 cards are selected
+            if (selectedCardBlock.querySelectorAll('.cardDraw').length < 3) {
+                // Clone the card
+                let clonedCard = this.cloneNode(true);
+
+                // Create a card-container for the cloned card
+                let cardContainer = document.createElement('div');
+                cardContainer.classList.add('card-container');
+
+                // Create a cardDraw container inside card-container
+                let cardDrawContainer = document.createElement('div');
+                cardDrawContainer.classList.add('cardDraw');
+                cardContainer.appendChild(cardDrawContainer);
+
+                // Append the cloned card to cardDraw container
+                cardDrawContainer.appendChild(clonedCard);
+
+                // Append the card-container to the selected-card-block
+                selectedCardBlock.appendChild(cardContainer);
+
+                // Remove the original card from not-selected-card-container
+                this.remove();
+
+                // Add flip event listener to the newly added card in selected-card-block
+                clonedCard.addEventListener('click', function flipCard() {
+                    this.classList.toggle('flipped');
+                    this.removeEventListener('click', flipCard); // Remove the click event listener after flipping
+
+                    // Assuming that each card has a "data-meaning" attribute to store its meaning.
+                    // Add the meaning of the flipped card to the meanings array
+                    meanings.push(this.getAttribute('data-meaning'));
+                    flippedCount++;
+
+                    // If 3 cards have been flipped, display the meanings
+                    if (flippedCount === 3) {
+                        document.getElementById('meanings-output').innerHTML = meanings.join('<br>');
+                    }
+                });
+            }
+        });
+    });
+
+    document.querySelector('.card').addEventListener('click', function flipOriginalCard() {
+        this.classList.toggle('flipped');
+        this.removeEventListener('click', flipOriginalCard); // Remove the click event listener after flipping
+
+        // Assuming that each card has a "data-meaning" attribute to store its meaning.
+        // Add the meaning of the flipped card to the meanings array
+        meanings.push(this.getAttribute('data-meaning'));
+        flippedCount++;
+
+        // If 3 cards have been flipped, display the meanings
+        if (flippedCount === 3) {
+            document.getElementById('meanings-output').innerHTML = meanings.join('<br>');
+        }
+    });
+</script>

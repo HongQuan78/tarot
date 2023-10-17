@@ -11,11 +11,9 @@ public partial class TarotCard
 
     public string? Description { get; set; }
 
-    public string? ImageUrl { get; set; }
-
     public string? Arcana { get; set; }
 
-    public virtual ICollection<Deck> Decks { get; set; } = new List<Deck>();
+    public virtual ICollection<CardImage> CardImages { get; set; } = new List<CardImage>();
 
     public virtual ICollection<Meaning> Meanings { get; set; } = new List<Meaning>();
 }
