@@ -1,5 +1,5 @@
 ﻿@page
-@model IndexModel
+@model TarotReader
 @{
     ViewData["Title"] = "Home page";
 }
@@ -14,130 +14,26 @@
         <a class="btn btn-lg btn-custom" style="background-color:#3c393c;color:#fcb831" href="/tarotreader">Tarot Readers</a>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-3">
-        <div class="card custom-card">
-            <img src="/images/reader-avt.png" class="card-img-top custom-card-img" alt="Avatar 1" style="max-width:80%">
-            <div class="card-body custom-card-body">
-                <h5 class="card-title">Name 1</h5>
-                <p class="card-text">Address 1</p>
-                <p class="card-text"><strong>Price:</strong> $100</p>
+@if (Model.readers != null)
+{
+    <div class="row">
+        @foreach (var item in Model.readers)
+        {
+            <div class="col-md-3">
+                <div class="card custom-card">
+                    <img src="/images/reader-avt.png" class="card-img-top custom-card-img" alt="Avatar 1" style="max-width:80%">
+                    <div class="card-body custom-card-body">
+                        <h5 class="card-title">Name 1</h5>
+                        <p class="card-text">Address 1</p>
+                        <p class="card-text"><strong>Price:</strong> $100</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        }
 
-    <div class="col-md-3">
-        <div class="card custom-card">
-            <img src="/images/reader-avt.png" class="card-img-top custom-card-img" alt="Avatar 1" style="max-width:80%">
-            <div class="card-body custom-card-body">
-                <h5 class="card-title">Name 1</h5>
-                <p class="card-text">Address 1</p>
-                <p class="card-text"><strong>Price:</strong> $100</p>
-            </div>
-        </div>
     </div>
-    <div class="col-md-3">
-        <div class="card custom-card">
-            <img src="/images/reader-avt.png" class="card-img-top custom-card-img" alt="Avatar 1" style="max-width:80%">
-            <div class="card-body custom-card-body">
-                <h5 class="card-title">Name 1</h5>
-                <p class="card-text">Address 1</p>
-                <p class="card-text"><strong>Price:</strong> $100</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card custom-card">
-            <img src="/images/reader-avt.png" class="card-img-top custom-card-img" alt="Avatar 1" style="max-width:80%">
-            <div class="card-body custom-card-body">
-                <h5 class="card-title">Name 1</h5>
-                <p class="card-text">Address 1</p>
-                <p class="card-text"><strong>Price:</strong> $100</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 my-3">
-        <div class="card custom-card">
-            <img src="/images/reader-avt.png" class="card-img-top custom-card-img" alt="Avatar 1" style="max-width:80%">
-            <div class="card-body custom-card-body">
-                <h5 class="card-title">Name 1</h5>
-                <p class="card-text">Address 1</p>
-                <p class="card-text"><strong>Price:</strong> $100</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 my-3">
-        <div class="card custom-card">
-            <img src="/images/reader-avt.png" class="card-img-top custom-card-img" alt="Avatar 1" style="max-width:80%">
-            <div class="card-body custom-card-body">
-                <h5 class="card-title">Name 1</h5>
-                <p class="card-text">Address 1</p>
-                <p class="card-text"><strong>Price:</strong> $100</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 my-3">
-        <div class="card custom-card">
-            <img src="/images/reader-avt.png" class="card-img-top custom-card-img" alt="Avatar 1" style="max-width:80%">
-            <div class="card-body custom-card-body">
-                <h5 class="card-title">Name 1</h5>
-                <p class="card-text">Address 1</p>
-                <p class="card-text"><strong>Price:</strong> $100</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 my-3">
-        <div class="card custom-card">
-            <img src="/images/reader-avt.png" class="card-img-top custom-card-img" alt="Avatar 1" style="max-width:80%">
-            <div class="card-body custom-card-body">
-                <h5 class="card-title">Name 1</h5>
-                <p class="card-text">Address 1</p>
-                <p class="card-text"><strong>Price:</strong> $100</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 my-3">
-        <div class="card custom-card">
-            <img src="/images/reader-avt.png" class="card-img-top custom-card-img" alt="Avatar 1" style="max-width:80%">
-            <div class="card-body custom-card-body">
-                <h5 class="card-title">Name 1</h5>
-                <p class="card-text">Address 1</p>
-                <p class="card-text"><strong>Price:</strong> $100</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 my-3">
-        <div class="card custom-card">
-            <img src="/images/reader-avt.png" class="card-img-top custom-card-img" alt="Avatar 1" style="max-width:80%">
-            <div class="card-body custom-card-body">
-                <h5 class="card-title">Name 1</h5>
-                <p class="card-text">Address 1</p>
-                <p class="card-text"><strong>Price:</strong> $100</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 my-3">
-        <div class="card custom-card">
-            <img src="/images/reader-avt.png" class="card-img-top custom-card-img" alt="Avatar 1" style="max-width:80%">
-            <div class="card-body custom-card-body">
-                <h5 class="card-title">Name 1</h5>
-                <p class="card-text">Address 1</p>
-                <p class="card-text"><strong>Price:</strong> $100</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 my-3">
-        <div class="card custom-card">
-            <img src="/images/reader-avt.png" class="card-img-top custom-card-img" alt="Avatar 1" style="max-width:80%">
-            <div class="card-body custom-card-body">
-                <h5 class="card-title">Name 1</h5>
-                <p class="card-text">Address 1</p>
-                <p class="card-text"><strong>Price:</strong> $100</p>
-            </div>
-        </div>
-    </div>
-   
-</div>
+}
+
 <style>
     .btn-custom {
         width: 50%;
@@ -157,7 +53,7 @@
     }
 
     .custom-card {
-        background-color:#8e05c2;
+        background-color: #8e05c2;
         /* width:30%; */
         border: none; /* Removes the card's border */
         padding: 5px; /* Reduces the card's padding */
@@ -165,7 +61,7 @@
 
     .custom-card-img {
         margin: 10px auto;
-        display: block; 
+        display: block;
     }
 
     .custom-card-body {

@@ -1,10 +1,10 @@
 ﻿@page
 @model Tarot.Pages.RegisterModel
 
-@if (TempData.ContainsKey("SuccessMessage"))
+@if (TempData.ContainsKey("Message"))
 {
-    <div class="alert alert-success">
-        @TempData["SuccessMessage"]
+    <div class="alert alert-info">
+        @TempData["Message"]
     </div>
 }
 

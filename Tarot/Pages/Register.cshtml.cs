@@ -21,15 +21,24 @@ namespace Tarot.Pages
 
         public void OnPost()
         {
-            bool registrationSuccess = _accountService.Register(UserInput);
-            if (registrationSuccess)
+            try
             {
-                TempData["Message"] = "Registration successful!";
+                bool registrationSuccess = _accountService.Register(UserInput);
+                if (registrationSuccess)
+                {
+                    TempData["Message"] = "Registration successful!";
+                }
+                else
+                {
+                    TempData["Message"] = "Registration failed. Please try again.";
+                }
             }
-            else
+            catch (Exception)
             {
                 TempData["Message"] = "Registration failed. Please try again.";
+                Redirect("/");
             }
+            
         }
     }
 }

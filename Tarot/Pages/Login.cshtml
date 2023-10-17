@@ -16,10 +16,19 @@
         </div>
         <div class="form-container">
             <form class="text-center" method="post">
-                <input type="text" asp-for="@Model.username" placeholder="Username" class="form-control mx-auto" style="width:50%" />
-                <input type="password" asp-for="@Model.password" placeholder="Password" class="form-control my-3 mx-auto" style="width:50%" />
+                @if (TempData.ContainsKey("Fail"))
+                {
+                    <div class="text-danger">
+                        @TempData["Fail"]
+                    </div>
+                }
+                <input type="text" asp-for="@Model.username" placeholder="Username" value="@Model.username" class="form-control mx-auto" style="width:50%" />
+                <input type="password" asp-for="@Model.password" placeholder="Password" value="@Model.password" class="form-control my-3 mx-auto" style="width:50%" />
                 <div class="my-3">
-                    <input type="checkbox"/>
+                    @{
+                        var Checked = string.IsNullOrEmpty(Model.username) ? "" : "true";
+                    }
+                    <input type="checkbox" asp-for="@Model.IsRemember" checked="@Checked" />
                     <lable class="text-decoration-underline" style="color:#fcb831;margin-right:18%">Nhớ mật khẩu</lable>
                     <a href="#" class="text-decoration-underline" style="color:#fcb831;">Quên mật khẩu?</a>
                 </div>

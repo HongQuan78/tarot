@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Tarot.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="icon" type="image/x-icon" href="~/favicon.ico">
 </head>
 <body style="background-color:black">
@@ -37,10 +38,11 @@
                     else
                     {
                         <div class="d-flex align-content-end">
-                            <a class="btn px-2 text-white text-decoration-underline" href="">@IHttpContextAccessor.HttpContext.Session.GetString("fullname")</a>
+                            <a class="btn px-2 text-white text-decoration-underline" href="/reading-history">Quẻ bói của bạn</a>
+                            <a class="btn px-2 text-white text-decoration-underline" href="/logout">Đăng xuất</a>
                         </div>
                     }
-                    
+
                 </div>
             </div>
         </nav>
@@ -51,7 +53,6 @@
     </main>
 
     <footer class="footer text-white" style="background-color: #3e065f">
-       
     </footer>
     <style>
 
