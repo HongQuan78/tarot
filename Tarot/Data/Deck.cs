@@ -12,6 +12,4 @@ public partial class Deck
     public string? ImageUrl { get; set; }
 
     public virtual ICollection<CardImage> CardImages { get; set; } = new List<CardImage>();
-
-    public virtual ICollection<ReadingHistory> ReadingHistories { get; set; } = new List<ReadingHistory>();
 }
