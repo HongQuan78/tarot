@@ -42,17 +42,14 @@
     </div>
 
 </div>
-
+<div class="choose-text-container">
+    <h3 class="text-center my-2" style="color: #FCB831">Hãy chọn 3 lá bài</h3>
+</div>
 <div class="not-selected-card-container" style="margin: 30px; margin-left: 200px; margin-right: 200px; width: 80%;">
-    <div class="choose-card">
-        <div class="circle">
-            <p class="choose-text">Chọn bài</p>
-        </div>
-    </div>
     @for (int i = 0; i < Model.cardList.Count; i++)
     {
         <div class="card-container">
-            <div class="text-white card" data-meaning="Card @Model.cardList[i].Name nói rằng @Model.cardList[i].Meanings.FirstOrDefault()?.Meaning1").">
+            <div class="text-white card" data-name="Lá bài @Model.cardList[i].Name" data-meaning=" nói rằng @Model.cardList[i].Meanings.FirstOrDefault()?.Meaning1" ).">
                 <!-- This is just a placeholder -->
                 <div class="card-back">
                     <img src="~/images/cardback/riderwaite.jpg" alt="Card Back" />
@@ -69,11 +66,11 @@
 <div class="selected-card-container my-3">
     <div class="d-flex justify-content-center" id="selected-card-block">
     </div>
-    <div id="meanings-container" class="row mt-5">
-        <div class="col text-center">
-            // Meaning output
-            <div id="meanings-output"></div>
-        </div>
+   
+</div>
+<div id="meanings-container" class="row mt-5">
+    <div class="col text-center">
+        <div id="meanings-output" style="background-color:#3e065f;color:#FCB831"></div>
     </div>
 </div>
 <div class="row" style="margin: 100px">
@@ -89,6 +86,22 @@
     </div>
 </div>
 <style>
+
+    
+    #meanings-output{
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%; /* Bạn có thể điều chỉnh giá trị này để thay đổi độ rộng của ô */
+        padding: 20px;
+        border: 1px solid #FCB831; /* Đây chỉ là viền màu vàng, bạn có thể loại bỏ nếu không muốn */
+        border-radius: 10px; /* Làm mềm góc của ô */
+        display: none;
+    }
+    #meanings-output p{
+        text-align:left;
+        padding: 10px;
+        font-size:20px;
+    }
     .btn-custom {
         width: 50%;
         height: 100%;
@@ -150,38 +163,6 @@
             max-width: 100%;
         }
 
-    .choose-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        background-color: #3c393c;
-        margin-left: 20px;
-        margin-right: 40px;
-        height: 100px;
-        width: 100px;
-        border-radius: 50%;
-    }
-
-    .circle {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%; /* same as the parent .choose-card width */
-        height: 100%; /* same as the parent .choose-card height */
-        border-radius: 50%;
-    }
-
-    .choose-text {
-        font-size: 18px;
-        font-weight: bold;
-        color: white;
-    }
-
-
-    .choose-card:hover{
-        cursor: pointer;
-    }
 
     .card-container {
         perspective: 1000px;
@@ -215,11 +196,26 @@
         transform: rotateY(180deg);
     }
 
-</style>
+    #selected-card-block .card-container {
+        margin-right: 20px; /* Khoảng cách giữa các lá bài */
+    }
 
+        #selected-card-block .card-container:last-child {
+            margin-right: 0;
+        }
+
+    .not-selected-card-container .card-container {
+        margin-left: -30px; /* Điều chỉnh khoảng cách này để tăng/giảm độ chồng chéo */
+        z-index: 1;
+    }
+
+        .not-selected-card-container .card-container:hover {
+            z-index: 100; /* Đảm bảo lá bài đang được di chuột lên sẽ xuất hiện ở phía trên cùng */
+            transform: scale(1.1); /* Lá bài sẽ phóng to một chút khi di chuột lên */
+        }
+</style>
 <script>
-    let flippedCount = 0; // To keep track of how many cards have been flipped
-    let meanings = [];    // To store the meanings of the flipped cards as an array
+    let flippedCount = 0;
 
     document.querySelectorAll('.not-selected-card-container .card').forEach(function (card) {
         card.addEventListener('click', function () {
@@ -251,17 +247,27 @@
                 // Add flip event listener to the newly added card in selected-card-block
                 clonedCard.addEventListener('click', function flipCard() {
                     this.classList.toggle('flipped');
-                    this.removeEventListener('click', flipCard); // Remove the click event listener after flipping
+                    this.removeEventListener('click', flipCard);
 
-                    // Assuming that each card has a "data-meaning" attribute to store its meaning.
-                    // Add the meaning of the flipped card to the meanings array
-                    meanings.push(this.getAttribute('data-meaning'));
+                    // Extract the card name and its meaning
+                    let cardName = this.getAttribute('data-name');
+                    let meaningText = this.getAttribute('data-meaning');
+                    let cardMeaning = meaningText.split(" ").slice(2).join(" ");
+
+                    // Create a new paragraph for the card's meaning
+                    let p = document.createElement('p');
+                    p.innerHTML = `<strong>${cardName}</strong>: ${cardMeaning}`;
+                    document.getElementById('meanings-output').appendChild(p);
+
                     flippedCount++;
 
                     // If 3 cards have been flipped, display the meanings
                     if (flippedCount === 3) {
-                        document.getElementById('meanings-output').innerHTML = meanings.join('<br>');
+                        // No need to join the meanings now, as they're already added as separate paragraphs
                     }
+
+                    // Hiển thị ô chứa ý nghĩa
+                    document.getElementById('meanings-output').style.display = 'block';
                 });
             }
         });
@@ -269,16 +275,29 @@
 
     document.querySelector('.card').addEventListener('click', function flipOriginalCard() {
         this.classList.toggle('flipped');
-        this.removeEventListener('click', flipOriginalCard); // Remove the click event listener after flipping
+        this.removeEventListener('click', flipOriginalCard);
 
-        // Assuming that each card has a "data-meaning" attribute to store its meaning.
-        // Add the meaning of the flipped card to the meanings array
-        meanings.push(this.getAttribute('data-meaning'));
+        // Extract the card name and its meaning
+        let cardName = this.getAttribute('data-name');
+        let meaningText = this.getAttribute('data-meaning');
+        let cardMeaning = meaningText.split(" ").slice(2).join(" ");
+
+        // Create a new paragraph for the card's meaning
+        let p = document.createElement('p');
+        p.className = "meaning-text";
+        p.innerHTML = `<strong>${cardName}</strong>: ${cardMeaning}`;
+        document.getElementById('meanings-output').appendChild(p);
+
         flippedCount++;
 
         // If 3 cards have been flipped, display the meanings
         if (flippedCount === 3) {
-            document.getElementById('meanings-output').innerHTML = meanings.join('<br>');
+            // No need to join the meanings now, as they're already added as separate paragraphs
         }
+
+        // Hiển thị ô chứa ý nghĩa
+        document.getElementById('meanings-output').style.display = 'block';
     });
+
+
 </script>
