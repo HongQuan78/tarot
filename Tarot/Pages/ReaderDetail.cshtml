@@ -1,0 +1,61 @@
+﻿@page "{id:int}"
+@model Tarot.Pages.ReaderDetailModel
+@{
+}
+
+<div class="container d-flex justify-content-center" style="min-height: 100vh; background-color: #3e065f;">
+    <div class="d-flex flex-wrap">
+        <div class="img-container my-5">
+            <img src="~/images/reader-avt.png" style="max-width: 100%;" />
+            <p style="color: #fcb831"><i class="mx-3 fa-solid fa-location-dot"></i>Đà Lạt</p>
+        </div>
+        <div class="infor-container my-5" style="color: #fcb831; margin-left: 20px; min-width: 200px;">
+            <h2>Lịch làm việc</h2>
+            <div class="time-container">
+                <div class="time-slot">
+                    <p>Slot 1: 8.am - 9.am</p>
+                    <p>Slot 2: 9.am - 10.am</p>
+                </div>
+                <div class="time-slot horizontal">
+                    <p>Slot 3: 10.am - 11.am</p>
+                    <p>Slot 4: 11.am - 12.pm</p>
+                </div>
+            </div>
+            <h4 class="my-3">Giá tiền: 150.000vnd</h4>
+            <a class="btn btn-lg fw-bold" style="background-color: #8e05c2; border-radius: 30px; color: #f4de11">Đặt lịch</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .img-container img {
+        max-width: 100%;
+    }
+
+    .infor-container {
+        display: flex;
+        flex-direction: column;
+        flex: 1; /* Allow it to grow to take available space */
+        max-width: 50%; /* Limit the maximum width */
+    }
+
+    .time-container {
+        display: flex;
+        flex-direction: column; /* Change to column layout for smaller screens */
+    }
+
+    .time-slot {
+        background-color: #d9d9d9;
+        padding: 10px;
+        margin: 5px;
+        border-radius: 5px;
+        color: black;
+        font-weight: bold;
+    }
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    
+</style>

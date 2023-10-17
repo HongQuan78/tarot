@@ -16,19 +16,19 @@
 </div>
 @if (Model.readers != null)
 {
-    <div class="row">
+    <div class="row" style="margin-right:20px">
         @foreach (var item in Model.readers)
         {
-            <div class="col-md-3">
+            <a href="/readerdetail/@item.ReaderId" class="col-md-3" style="color:#fcb831;margin-left:20px">
                 <div class="card custom-card">
-                    <img src="/images/reader-avt.png" class="card-img-top custom-card-img" alt="Avatar 1" style="max-width:80%">
+                    <img src="/images/reader-avt.png" class="card-img-top custom-card-img" alt="@item.ReaderNavigation.Fullname" style="max-width:80%">
                     <div class="card-body custom-card-body">
                         <h5 class="card-title">@item.ReaderNavigation.Fullname</h5>
                         <p class="card-text">@item.ReaderNavigation.Phone</p>
                         <p class="card-text"><strong>Price:</strong> @item.Price</p>
                     </div>
                 </div>
-            </div>
+            </a>
         }
 
     </div>
