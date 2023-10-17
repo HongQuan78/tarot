@@ -7,8 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="BusinessObject\" />
+    <Compile Remove="BusinessObject\**" />
+    <Content Remove="BusinessObject\**" />
+    <EmbeddedResource Remove="BusinessObject\**" />
+    <None Remove="BusinessObject\**" />
   </ItemGroup>
 
   <ItemGroup>

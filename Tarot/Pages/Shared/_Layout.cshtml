@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject IHttpContextAccessor IHttpContextAccessor
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -26,10 +27,20 @@
                             <a class="nav-link active text-decoration-underline" aria-current="page" href="/">Tarot Meeting</a>
                         </li>
                     </ul>
-                    <div class="d-flex align-content-end">
-                        <a class="btn px-2 text-white text-decoration-underline" href="/register">Đăng Kí</a>
-                        <a class="btn text-white px-2 text-decoration-underline" href="/login">Đăng Nhập</a>
-                    </div>
+                    @if (IHttpContextAccessor.HttpContext.Session.GetString("fullname") == null)
+                    {
+                        <div class="d-flex align-content-end">
+                            <a class="btn px-2 text-white text-decoration-underline" href="/register">Đăng Kí</a>
+                            <a class="btn text-white px-2 text-decoration-underline" href="/login">Đăng Nhập</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="d-flex align-content-end">
+                            <a class="btn px-2 text-white text-decoration-underline" href="">@IHttpContextAccessor.HttpContext.Session.GetString("fullname")</a>
+                        </div>
+                    }
+                    
                 </div>
             </div>
         </nav>
