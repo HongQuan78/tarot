@@ -8,6 +8,7 @@ namespace Tarot.Pages
     public class ReaderProfileModel : PageModel
     {
         public AccountService accountService;
+        public ReadingService readingService;
         [BindProperty]
         public string name {  get; set; }
         [BindProperty]
@@ -22,10 +23,19 @@ namespace Tarot.Pages
         public decimal? rating { get; set; }
         [BindProperty]
         public int? currentUserId { get; set; }
+        [BindProperty]
+        public List<ReadingHistory> readingHistoriesDone { get; set; }
+
+        [BindProperty]
+        public List<ReadingHistory> readingHistoriesPending { get; set; }
+
+        [BindProperty]
+        public int numberOfCalls { get; set; }
 
         public ReaderProfileModel()
         {
             accountService = new AccountService();
+            readingService = new ReadingService();
         }
         public IActionResult OnGet()
         {
@@ -47,7 +57,11 @@ namespace Tarot.Pages
                         linkMeet = user.Reader.MeetingLink;
                         workingHour = user.Reader.WorkingHours.ToList();
                         rating = user.Reader.Rating;
+                        readingHistoriesDone = readingService.getReadingHistoryForReaderDone(currentUserId);
+                        numberOfCalls = readingService.countReadingDone(currentUserId);
+                        readingHistoriesPending = readingService.getReadingHistoryForReaderPending(currentUserId);
                     }
+         
                     return Page();
                 }
                 else

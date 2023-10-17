@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
@@ -172,6 +172,11 @@ public partial class TarotOnlineContext : DbContext
             entity.HasIndex(e => e.Email, "UQ__Users__AB6E6164B85BC6C0").IsUnique();
 
             entity.HasIndex(e => e.Username, "UQ__Users__F3DBC572543A304E").IsUnique();
+
+            entity.HasIndex(e => e.Email, "UQ__Users__AB6E616411587A8A").IsUnique();
+
+            entity.HasIndex(e => e.Username, "UQ__Users__F3DBC572BEF37DD3").IsUnique();
+>>>>>>> tuanbrach
 
             entity.Property(e => e.UserId).HasColumnName("user_id");
             entity.Property(e => e.Birthday)
