@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Tarot.Pages
 {
-    public class RegisterModel : PageModel
-    {   
+    public class MeetingModel : PageModel
+    {
         public void OnGet()
         {
         }
