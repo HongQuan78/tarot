@@ -1,4 +1,5 @@
 using Tarot.Data;
+using Tarot.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<TarotOnlineContext>();
+builder.Services.AddScoped<AccountService>();   
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);

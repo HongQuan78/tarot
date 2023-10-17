@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Tarot.Data;
+using Tarot.Model;
 
 namespace Tarot.Service
 {
@@ -20,6 +21,23 @@ namespace Tarot.Service
                 return user;
             }
             return null;
+        }
+
+        public bool Register(RegisterDTO userDTO)
+        {
+            User user = new User
+            {
+                Fullname = userDTO.Fullname,
+                Username = userDTO.Username,
+                Password = userDTO.Password,
+                Email = userDTO.Email,
+                Birthday = userDTO.Birthday,
+                Gender = userDTO.Gender,
+                Phone = userDTO.Phone,
+                Role = "user"
+            };
+            _tarotOnlineContext.Users.Add(user);
+            return _tarotOnlineContext.SaveChanges() > 0;
         }
     }
 }
