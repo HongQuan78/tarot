@@ -3,29 +3,33 @@
 @{
 }
 
-<div class="container d-flex justify-content-center" style="min-height: 100vh; background-color: #3e065f;">
-    <div class="d-flex flex-wrap">
-        <div class="img-container my-5">
-            <img src="~/images/reader-avt.png" style="max-width: 100%;" />
-            <p style="color: #fcb831"><i class="mx-3 fa-solid fa-location-dot"></i>Đà Lạt</p>
-        </div>
-        <div class="infor-container my-5" style="color: #fcb831; margin-left: 20px; min-width: 200px;">
-            <h2>Lịch làm việc</h2>
-            <div class="time-container">
-                <div class="time-slot">
-                    <p>Slot 1: 8.am - 9.am</p>
-                    <p>Slot 2: 9.am - 10.am</p>
-                </div>
-                <div class="time-slot horizontal">
-                    <p>Slot 3: 10.am - 11.am</p>
-                    <p>Slot 4: 11.am - 12.pm</p>
-                </div>
+<form method="post">
+    <div class="container d-flex justify-content-center" style="min-height: 100vh; background-color: #3e065f;">
+        <div class="d-flex flex-wrap">
+            <div class="img-container my-5">
+                <img src="~/images/reader-avt.png" style="max-width: 100%;" />
             </div>
-            <h4 class="my-3">Giá tiền: 150.000vnd</h4>
-            <a class="btn btn-lg fw-bold" style="background-color: #8e05c2; border-radius: 30px; color: #f4de11">Đặt lịch</a>
+            <div class="infor-container my-5" style="color: #fcb831; margin-left: 20px; min-width: 200px;">
+                <h2>Lịch làm việc</h2>
+                <div class="time-container">
+                    <div class="custom-input">
+                        <input type="text" value="@Model.user.UserId" asp-for="@Model.ReaderId" hidden/>
+                        <input type="text" value="@Model.user.Reader.Price" asp-for="@Model.Price" hidden />
+                        @for (int i = 0; i < Model.workingHour.Count; i++)
+                        {
+                            <div class="form-check form-check-inline">
+                                <input type="radio" asp-for="SelectedSlot" value="@Model.workingHour[i].HourId" class="form-check-input" id="slot1" checked>
+                                <label class="form-check-label" for="slot1">Slot @(i + 1): @Model.workingHour[i].StartTime - @Model.workingHour[i].EndTime</label>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <h4 class="my-3">Giá tiền: @Model.user.Reader.Price vnd</h4>
+                <button type="submit" class="btn btn-lg fw-bold" style="background-color: #8e05c2; border-radius: 30px; color: #f4de11">Đặt lịch</button>
+            </div>
         </div>
     </div>
-</div>
+</form>
 
 <style>
     .img-container img {
@@ -57,5 +61,4 @@
         margin-bottom: 10px;
     }
 
-    
 </style>

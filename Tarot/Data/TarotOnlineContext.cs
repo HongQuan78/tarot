@@ -33,7 +33,7 @@ public partial class TarotOnlineContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-5DIAVQ3\\SQLEXPRESS;database=TarotOnline;uid=sa;pwd=00000000;TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Server=HongQuan\\HONGQUAN;database=TarotOnline;uid=sa;pwd=123;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -41,7 +41,7 @@ public partial class TarotOnlineContext : DbContext
 
         modelBuilder.Entity<CardImage>(entity =>
         {
-            entity.HasKey(e => e.ImageId).HasName("PK__CardImag__DC9AC955C432102B");
+            entity.HasKey(e => e.ImageId).HasName("PK__CardImag__DC9AC95532507372");
 
             entity.Property(e => e.ImageId).HasColumnName("image_id");
             entity.Property(e => e.CardId).HasColumnName("card_id");
@@ -59,7 +59,7 @@ public partial class TarotOnlineContext : DbContext
 
         modelBuilder.Entity<Deck>(entity =>
         {
-            entity.HasKey(e => e.DeckId).HasName("PK__Decks__23DA38D017402568");
+            entity.HasKey(e => e.DeckId).HasName("PK__Decks__23DA38D07A55E199");
 
             entity.Property(e => e.DeckId).HasColumnName("deck_id");
             entity.Property(e => e.ImageUrl).HasColumnName("image_url");
@@ -70,7 +70,7 @@ public partial class TarotOnlineContext : DbContext
 
         modelBuilder.Entity<Meaning>(entity =>
         {
-            entity.HasKey(e => e.MeaningId).HasName("PK__Meanings__F5D174D1A4DA8FB7");
+            entity.HasKey(e => e.MeaningId).HasName("PK__Meanings__F5D174D18C2A5E50");
 
             entity.Property(e => e.MeaningId).HasColumnName("meaning_id");
             entity.Property(e => e.Meaning1).HasColumnName("meaning");
@@ -81,7 +81,7 @@ public partial class TarotOnlineContext : DbContext
 
         modelBuilder.Entity<Reader>(entity =>
         {
-            entity.HasKey(e => e.ReaderId).HasName("PK__Readers__40E382885D5DA86C");
+            entity.HasKey(e => e.ReaderId).HasName("PK__Readers__40E3828855C0AFDE");
 
             entity.Property(e => e.ReaderId)
                 .ValueGeneratedNever()
@@ -91,7 +91,7 @@ public partial class TarotOnlineContext : DbContext
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("price");
             entity.Property(e => e.Rating)
-                .HasColumnType("decimal(3, 2)")
+                .HasColumnType("decimal(10, 2)")
                 .HasColumnName("rating");
             entity.Property(e => e.Schedule).HasColumnName("schedule");
 
@@ -103,16 +103,12 @@ public partial class TarotOnlineContext : DbContext
 
         modelBuilder.Entity<ReadingHistory>(entity =>
         {
-            entity.HasKey(e => e.ReadingId).HasName("PK__ReadingH__8091F95A2843FCDF");
+            entity.HasKey(e => e.ReadingId).HasName("PK__ReadingH__8091F95ABE7491BD");
 
             entity.ToTable("ReadingHistory");
 
             entity.Property(e => e.ReadingId).HasColumnName("reading_id");
-            entity.Property(e => e.DateTime)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
-                .HasColumnName("date_time");
-            entity.Property(e => e.DeckId).HasColumnName("deck_id");
+            entity.Property(e => e.HourId).HasColumnName("hour_id");
             entity.Property(e => e.Notes).HasColumnName("notes");
             entity.Property(e => e.Price)
                 .HasColumnType("money")
@@ -123,9 +119,9 @@ public partial class TarotOnlineContext : DbContext
                 .HasColumnName("status");
             entity.Property(e => e.UserId).HasColumnName("user_id");
 
-            entity.HasOne(d => d.Deck).WithMany(p => p.ReadingHistories)
-                .HasForeignKey(d => d.DeckId)
-                .HasConstraintName("FK__ReadingHi__deck___5441852A");
+            entity.HasOne(d => d.Hour).WithMany(p => p.ReadingHistories)
+                .HasForeignKey(d => d.HourId)
+                .HasConstraintName("FK__ReadingHi__hour___534D60F1");
 
             entity.HasOne(d => d.Reader).WithMany(p => p.ReadingHistories)
                 .HasForeignKey(d => d.ReaderId)
@@ -138,7 +134,7 @@ public partial class TarotOnlineContext : DbContext
 
         modelBuilder.Entity<TarotCard>(entity =>
         {
-            entity.HasKey(e => e.CardId).HasName("PK__TarotCar__BDF201DD3A3EFD40");
+            entity.HasKey(e => e.CardId).HasName("PK__TarotCar__BDF201DD678061F2");
 
             entity.Property(e => e.CardId).HasColumnName("card_id");
             entity.Property(e => e.Arcana)
@@ -162,7 +158,7 @@ public partial class TarotOnlineContext : DbContext
                         .HasConstraintName("FK__CardMeani__card___47DBAE45"),
                     j =>
                     {
-                        j.HasKey("CardId", "MeaningId").HasName("PK__CardMean__B2AF169056CF7C3C");
+                        j.HasKey("CardId", "MeaningId").HasName("PK__CardMean__B2AF16905AE5466D");
                         j.ToTable("CardMeanings");
                         j.IndexerProperty<int>("CardId").HasColumnName("card_id");
                         j.IndexerProperty<int>("MeaningId").HasColumnName("meaning_id");
@@ -171,11 +167,11 @@ public partial class TarotOnlineContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__B9BE370F85A337BF");
+            entity.HasKey(e => e.UserId).HasName("PK__Users__B9BE370FA1695889");
 
-            entity.HasIndex(e => e.Email, "UQ__Users__AB6E6164FCEB13CC").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__Users__AB6E6164B85BC6C0").IsUnique();
 
-            entity.HasIndex(e => e.Username, "UQ__Users__F3DBC572CB7A7EF8").IsUnique();
+            entity.HasIndex(e => e.Username, "UQ__Users__F3DBC572543A304E").IsUnique();
 
             entity.Property(e => e.UserId).HasColumnName("user_id");
             entity.Property(e => e.Birthday)
@@ -206,7 +202,7 @@ public partial class TarotOnlineContext : DbContext
 
         modelBuilder.Entity<WorkingHour>(entity =>
         {
-            entity.HasKey(e => e.HourId).HasName("PK__WorkingH__21EED6C839B4C055");
+            entity.HasKey(e => e.HourId).HasName("PK__WorkingH__21EED6C801698933");
 
             entity.Property(e => e.HourId).HasColumnName("hour_id");
             entity.Property(e => e.DayOfWeek)

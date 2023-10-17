@@ -11,9 +11,7 @@ public partial class ReadingHistory
 
     public int? ReaderId { get; set; }
 
-    public DateTime? DateTime { get; set; }
-
-    public int? DeckId { get; set; }
+    public int? HourId { get; set; }
 
     public string? Notes { get; set; }
 
@@ -21,7 +19,7 @@ public partial class ReadingHistory
 
     public string? Status { get; set; }
 
-    public virtual Deck? Deck { get; set; }
+    public virtual WorkingHour? Hour { get; set; }
 
     public virtual Reader? Reader { get; set; }
 

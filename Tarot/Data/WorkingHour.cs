@@ -16,4 +16,6 @@ public partial class WorkingHour
     public string? DayOfWeek { get; set; }
 
     public virtual Reader? Reader { get; set; }
+
+    public virtual ICollection<ReadingHistory> ReadingHistories { get; set; } = new List<ReadingHistory>();
 }
