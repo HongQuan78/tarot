@@ -1,6 +1,11 @@
 ﻿@page
 @model Tarot.Pages.RegisterModel
-@{
+
+@if (TempData.ContainsKey("SuccessMessage"))
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
 }
 
 <div class="row my-3">
@@ -10,65 +15,115 @@
     <p class="text-center" style="color:#F4DE11"><i>Đăng Ký Tài Khoản</i></p>
 </div>
 <div class="row">
-    <div class="form-container mx-auto" style="width:70%">
+    <div class="col-7 offset-3 form-container" style="width:70%">
         <form class="text-center" method="post">
             <div class="form-group d-flex align-items-center my-2">
-                <label for="fullName" class="custom-label">Họ và tên <span style="color: #F10A0A">(*)</span></label>
-                <input type="text" id="fullName" class="form-control mx-auto custom-input" placeholder="Họ và tên" />
-            </div>
-            <div class="form-group d-flex align-items-center my-2">
-                <label for="dob" class="custom-label">Ngày tháng năm sinh <span style="color: #F10A0A">(*)</span></label>
-                <input type="date" id="dob" class="form-control mx-auto custom-input" />
-            </div>
-            <div class="form-group d-flex align-items-center my-2">
-                <label for="gender" class="custom-label">Giới tính <span style="color: #F10A0A">(*)</span></label>
-                <div class="custom-input">
-                    <div class="form-check form-check-inline">
-                        <input type="radio" id="male" name="gender" class="form-check-input" value="male">
-                        <label for="male" class="form-check-label" style="margin-right: 10px;">Nam</label>
+                <label class="custom-label">Họ và tên <span style="color: #F10A0A">(*)</span></label>
+                <div>
+                    <input asp-for="UserInput.Fullname" type="text" class="form-control mx-auto custom-input" placeholder="Họ và tên" />
+                    <div class="text-start">
+                        <span asp-validation-for="UserInput.Fullname" class="text-danger"></span>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input type="radio" id="female" name="gender" class="form-check-input" value="female">
-                        <label for="female" class="form-check-label" style="margin-right: 10px;">Nữ</label>
+                </div>
+            </div>
+
+            <div class="form-group align-items-center my-2">
+                <label class="custom-label">Ngày tháng năm sinh <span style="color: #F10A0A">(*)</span></label>
+                <div>
+                    <input asp-for="UserInput.Birthday" type="date" class="form-control mx-auto custom-input" />
+                    <div class="text-start">
+                        <span asp-validation-for="UserInput.Birthday" class="text-danger"></span>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input type="radio" id="other" name="gender" class="form-check-input" value="other">
-                        <label for="other" class="form-check-label" style="margin-right: 10px;">Khác</label>
+                </div>
+            </div>
+
+            <div class="form-group d-flex align-items-center my-2">
+                <label class="custom-label">Giới tính <span style="color: #F10A0A">(*)</span></label>
+                <div>
+                    <div class="custom-input">
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="male" name="UserInput.Gender" class="form-check-input" value="male" checked>
+                            <label asp-for="UserInput.Gender" for="male" class="form-check-label" style="margin-right: 10px;">Nam</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input asp-for="UserInput.Gender" type="radio" id="female" name="UserInput.Gender" class="form-check-input" value="female">
+                            <label for="female" class="form-check-label" style="margin-right: 10px;">Nữ</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input asp-for="UserInput.Gender" type="radio" id="other" name="UserInput.Gender" class="form-check-input" value="other">
+                            <label for="other" class="form-check-label" style="margin-right: 10px;">Khác</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group d-flex align-items-center my-2">
+                <label class="custom-label">Username <span style="color: #F10A0A">(*)</span></label>
+                <div>
+                    <input asp-for="UserInput.Username" type="text" class="form-control mx-auto custom-input" placeholder="Username" />
+                    <div class="text-start">
+                        <span asp-validation-for="UserInput.Username" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group d-flex align-items-center my-2">
+                <label class="custom-label">Password <span style="color: #F10A0A">(*)</span></label>
+                <div>
+                    <input asp-for="UserInput.Password" type="password" class="form-control mx-auto custom-input" placeholder="Password" />
+                    <div class="text-start">
+                        <span asp-validation-for="UserInput.Password" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group d-flex align-items-center my-2">
+                <label class="custom-label">Verify Password <span style="color: #F10A0A">(*)</span></label>
+                <div>
+                    <input asp-for="UserInput.ConfirmPassword" type="password" class="form-control mx-auto custom-input" placeholder="Verify Password" />
+                    <div class="text-start">
+                        <span asp-validation-for="UserInput.ConfirmPassword" class="text-danger"></span>
                     </div>
                 </div>
             </div>
             <div class="form-group d-flex align-items-center my-2">
-                <label for="usernameInput" class="custom-label">Username <span style="color: #F10A0A">(*)</span></label>
-                <input type="text" id="usernameInput" class="form-control mx-auto custom-input" placeholder="Username" />
+                <label class="custom-label">Email <span style="color: #F10A0A">(*)</span></label>
+                <div>
+                    <input asp-for="UserInput.Email" type="email" class="form-control mx-auto custom-input" placeholder="Email" />
+                    <div class="text-start">
+                        <span asp-validation-for="UserInput.Email" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
+
             <div class="form-group d-flex align-items-center my-2">
-                <label for="passwordInput" class="custom-label">Password <span style="color: #F10A0A">(*)</span></label>
-                <input type="password" id="passwordInput" class="form-control mx-auto custom-input" placeholder="Password" />
+                <label class="custom-label">Số điện thoại <span style="color: #F10A0A">(*)</span></label>
+                <div>
+                    <input asp-for="UserInput.Phone" type="tel" class="form-control mx-auto custom-input" placeholder="Số điện thoại" />
+                    <div class="text-start">
+                        <span asp-validation-for="UserInput.Phone" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group d-flex align-items-center my-2">
-                <label for="verifyPassword" class="custom-label">Verify Password <span style="color: #F10A0A">(*)</span></label>
-                <input type="password" id="verifyPassword" class="form-control mx-auto custom-input" placeholder="Verify Password" />
+
+            <div class="mx-auto">
+                <button class="btn btn-lg btn-custom my-3 mx-auto">Đăng Ký</button>
+                <div class="d-fex text-decoration-underline align-content-between">
+                    <a href="#" class="text-white" style="margin-right: 100px!important">Đăng Nhập</a>
+                    <a href="#" class="text-white">Quên mật khẩu?</a>
+                </div>
             </div>
-            <div class="form-group d-flex align-items-center my-2">
-                <label for="emailInput" class="custom-label">Email <span style="color: #F10A0A">(*)</span></label>
-                <input type="email" id="emailInput" class="form-control mx-auto custom-input" placeholder="Email" />
-            </div>
-            <div class="form-group d-flex align-items-center my-2">
-                <label for="phoneInput" class="custom-label">Số điện thoại <span style="color: #F10A0A">(*)</span></label>
-                <input type="tel" id="phoneInput" class="form-control mx-auto custom-input" placeholder="Số điện thoại" />
-            </div>
-            <button class="btn btn-lg btn-custom my-3">Đăng Ký</button>
-            <div class="d-fex text-decoration-underline align-content-between">
-                <a href="#" class="text-white" style="margin-right: 100px!important">Đăng Nhập</a>
-                <a href="#" class="text-white">Quên mật khẩu?</a>
-            </div>
+
         </form>
     </div>
 </div>
+
+
+
 <style>
-    .btn-custom{
-        font-size:20px;
-        font-weight:bold;
+    .btn-custom {
+        font-size: 20px;
+        font-weight: bold;
         color: #fcb831 !important;
         background-color: #8e05c2 !important;
         width: 30%;
@@ -101,4 +156,14 @@
         flex-grow: 1 !important;
     }
 
+    .text-danger {
+        font-size: 15px;
+        color: #f7665e !important;
+    }
 </style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

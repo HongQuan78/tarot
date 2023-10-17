@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Tarot.Data;
+﻿namespace Tarot.Data;
 
 public partial class Deck
 {

@@ -1,12 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Tarot.Validate;
 
-namespace Tarot.Data
+namespace Tarot.Model
 {
-    public partial class User
+    public class RegisterDTO
     {
-        public int UserId { get; set; }
-
         [Required(ErrorMessage = "Vui lòng nhập username.")]
         [MinLength(4, ErrorMessage = "Username phải nhiều hơn 4 kí tự.")]
         [StringLength(50, ErrorMessage = "Username cannot be longer than 50 characters.")]
@@ -17,8 +15,12 @@ namespace Tarot.Data
         public string? Email { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập mật khẩu.")]
-        [StringLength(100, MinimumLength = 6, ErrorMessage = "Password must be between 6 and 100 characters.")]
+        [StringLength(100, MinimumLength = 6, ErrorMessage = "Mật khẩu phải dài hơn 6 kí tự.")]
         public string? Password { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng xác nhận mật khẩu.")]
+        [Compare("Password", ErrorMessage = "Mật khẩu không khớp.")]
+        public string? ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập họ và tên.")]
         public string? Fullname { get; set; }
@@ -29,14 +31,8 @@ namespace Tarot.Data
 
         [Required(ErrorMessage = "Vui lòng chọn giới tính.")]
         public string? Gender { get; set; }
-        
+
         [Required(ErrorMessage = "Vui lòng chọn ngày sinh.")]
         public DateTime? Birthday { get; set; }
-
-        public string? Role { get; set; }
-
-        public virtual Reader? Reader { get; set; }
-
-        public virtual ICollection<ReadingHistory> ReadingHistories { get; set; } = new List<ReadingHistory>();
     }
 }
