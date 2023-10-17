@@ -7,6 +7,7 @@ namespace Tarot.Pages
 {
     public class ReaderProfileModel : PageModel
     {
+        public TarotOnlineContext tarotOnlineContext;
         public AccountService accountService;
         public ReadingService readingService;
         [BindProperty]
@@ -36,6 +37,7 @@ namespace Tarot.Pages
         {
             accountService = new AccountService();
             readingService = new ReadingService();
+            tarotOnlineContext = new TarotOnlineContext();
         }
         public IActionResult OnGet()
         {
@@ -69,6 +71,16 @@ namespace Tarot.Pages
                     return Redirect("/Index");
                 }
             }
+        }
+        
+        public IActionResult OnPost()
+        {
+            currentUserId = HttpContext.Session.GetInt32("userId");
+            Reader reader = tarotOnlineContext.Readers.SingleOrDefault(x => x.ReaderId == currentUserId);
+            reader.MeetingLink = linkMeet;
+            tarotOnlineContext.Update(reader);
+            tarotOnlineContext.SaveChanges();
+            return RedirectToPage();
         }
     }
 }

@@ -19,8 +19,8 @@
                     <p>Mail: @Model.mail</p>
                     <form method="post">
                         <label>Link Meet:</</label>
-                        <input type="text" value="@Model.linkMeet" />
-                        <button class="btn" style="border: 1px solid black; color:#FCB831">Lưu</button>
+                        <input type="text" value="@Model.linkMeet" asp-for="@Model.linkMeet"/>
+                        <button type="submit" class="btn" style="border: 1px solid black; color:#FCB831">Lưu</button>
                     </form>
                 </div>
                 <div class="div2" style="margin-left:10em">
