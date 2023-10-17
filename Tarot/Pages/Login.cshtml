@@ -7,7 +7,7 @@
     <div class="col-6">
         <img src="images/login-img.png" class="img-login" style="max-width:80%;max-height:100%" />
     </div>
-    <div class="col-6 text-center">
+    <div class="col-lg-6 col-sm-12 text-center">
         <div class="text-center">
             <img src="images/logo-small.png" style="max-width:30%" />
         </div>
@@ -16,11 +16,11 @@
         </div>
         <div class="form-container">
             <form class="text-center" method="post">
-                @if (TempData.ContainsKey("Fail"))
+                @if (TempData.ContainsKey("Message"))
                 {
-                    <div class="text-danger">
+                    <p class="text-danger">
                         @TempData["Fail"]
-                    </div>
+                    </p>
                 }
                 <input type="text" asp-for="@Model.username" placeholder="Username" value="@Model.username" class="form-control mx-auto" style="width:50%" />
                 <input type="password" asp-for="@Model.password" placeholder="Password" value="@Model.password" class="form-control my-3 mx-auto" style="width:50%" />
@@ -28,7 +28,7 @@
                     @{
                         var Checked = string.IsNullOrEmpty(Model.username) ? "" : "true";
                     }
-                    <input type="checkbox" asp-for="@Model.IsRemember" checked="@Checked" />
+                    <input type="checkbox" asp-for="@Model.IsRemember" check="Checked" />
                     <lable class="text-decoration-underline" style="color:#fcb831;margin-right:18%">Nhớ mật khẩu</lable>
                     <a href="#" class="text-decoration-underline" style="color:#fcb831;">Quên mật khẩu?</a>
                 </div>
