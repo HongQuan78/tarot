@@ -39,6 +39,28 @@ namespace Tarot.Service
             _tarotOnlineContext.Users.Add(user);
             return _tarotOnlineContext.SaveChanges() > 0;
         }
+
+        public string getRole(int? userId)
+        {
+            string role = _tarotOnlineContext.Users.SingleOrDefault(x => x.UserId == userId).Role;
+            return role;
+        }
+
+
+        public User getUser(int? userId, string role)
+        {
+            User user = null;
+            if(role == "reader")
+            {
+                user = _tarotOnlineContext.Users.Include(x => x.Reader).ThenInclude(x => x.WorkingHours).SingleOrDefault(x => x.UserId == userId);
+            }
+            else
+            {
+                user = _tarotOnlineContext.Users.SingleOrDefault(x => x.UserId == userId);
+            }
+            
+            return user;
+        }
     }
 }
 
