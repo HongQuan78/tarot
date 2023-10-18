@@ -1,0 +1,13 @@
+﻿@page "{id:int}"
+@model Tarot.Pages.MeetingDetailModel
+@{
+}
+
+<div class="" style="background-color:#3e065f;width:60%;margin:auto;margin-top:5em;border-radius:30px">
+    <h3 class="text-center" style="color: #FCB831">@Model.readingHistory.Hour.StartTime đến @Model.readingHistory.Hour.EndTime</h3>
+    <div class="mx-5 text-center" style="margin-top:20px">
+        <a href="@Model.readingHistory.Reader.MeetingLink" class="mx-3 btn btn-lg" style="background-color:#8e05c2;padding:20px;margin:auto;margin-bottom:20px">
+            Join Meet
+        </a>
+    </div>
+</div>

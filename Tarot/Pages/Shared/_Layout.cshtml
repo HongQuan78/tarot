@@ -11,51 +11,103 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="icon" type="image/x-icon" href="~/favicon.ico">
 </head>
-<body style="background-color:black">
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-black">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/">
-                    <img src="~/images/logo-small.png" style="max-width:30%" />
-                    Tarot.today
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active text-decoration-underline" aria-current="page" href="/">Tarot Meeting</a>
-                        </li>
-                    </ul>
-                    @if (IHttpContextAccessor.HttpContext.Session.GetString("fullname") == null)
-                    {
-                        <div class="d-flex align-content-end">
-                            <a class="btn px-2 text-white text-decoration-underline" href="/register">Đăng Kí</a>
-                            <a class="btn text-white px-2 text-decoration-underline" href="/login">Đăng Nhập</a>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="d-flex align-content-end">
-                            <a class="btn px-2 text-white text-decoration-underline" href="/reading-history">Quẻ bói của bạn</a>
-                            <a class="btn px-2 text-white text-decoration-underline" href="/logout">Đăng xuất</a>
-                        </div>
-                    }
+<body>
+    <div class="content-wrapper">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">
+                        <img src="~/images/logo-small.png" style="max-width:30%" />
+                        Tarot.today
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
 
+                            </li>
+                        </ul>
+                        @if (IHttpContextAccessor.HttpContext.Session.GetString("fullname") == null)
+                        {
+                            <div class="d-flex align-content-end">
+                                <a class="btn px-2 text-white text-decoration-underline" href="/register">Đăng Kí</a>
+                                <a class="btn text-white px-2 text-decoration-underline" href="/login">Đăng Nhập</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="d-flex align-content-end">
+                                @if (IHttpContextAccessor.HttpContext.Session.GetString("role") == "reader")
+                                {
+                                    <a class="btn px-2 text-white text-decoration-underline" href="/readerprofile">Xem lịch hẹn</a>
+                                }
+                                else
+                                {
+                                    <a class="btn px-2 text-white text-decoration-underline" href="/readinghistory">Quẻ bói của bạn</a>
+
+                                }
+                                <a class="btn px-2 text-white text-decoration-underline" href="/logout">Đăng xuất</a>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </nav>
+
+        </header>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <div style="margin-top:10rem">
+        <footer class="footer mt-auto py-3 text-white" style="background-color: #3e065f;padding-top:50px; padding-bottom:50px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="~/images/logo.png" style="max-width:40%" />
+                    </div>
+                    <div class="col-md-3">
+                        <h5>About</h5>
+                        <ul>
+                            <li><a href="/" class="text-white">Our Project</a></li>
+                            <li><a href="/" class="text-white">Career</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Supports</h5>
+                        <ul>
+                            <li><a href="/" class="text-white">Supports Service</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>SOCIAL</h5>
+                        <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
             </div>
-        </nav>
+        </footer>
+    </div>
 
-    </header>
-    <main role="main" class="pb-3" style="margin-bottom: 100px">
-        @RenderBody()
-    </main>
 
-    <footer class="footer text-white" style="background-color: #3e065f">
-    </footer>
     <style>
+        .footer {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            background-color: red;
+            color: white;
+            text-align: center;
+            margin-top: 50px;
+        }
 
+        body {
+            background-image: url('https://c.wallhere.com/photos/73/91/night_sky_space_stars-71706.jpg!d');
+            background-size: cover; /* Optional: to cover the entire viewport */
+        }
     </style>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

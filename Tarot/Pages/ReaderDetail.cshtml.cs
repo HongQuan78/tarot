@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Tarot.Data;
@@ -21,31 +21,45 @@ namespace Tarot.Pages
         {
             _context = context;
         }
-        public void OnGet(int id)
+        public IActionResult OnGet(int id)
         {
+            if (HttpContext.Session.GetString("userId") == null)
+            {
+                return Redirect("/Index");
+            }
             user = _context.Users.Include(x => x.Reader).ThenInclude(a => a.WorkingHours).FirstOrDefault(x => x.UserId == id);
             Price = user.Reader.Price;
             workingHour = user.Reader.WorkingHours.Where(x => x.ReaderId == id).ToList();
-            Console.WriteLine(user);
+            return Page();
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
-            var HourId = SelectedSlot;
-            var UserId = HttpContext.Session.GetInt32("userId");
-            var ReaderIdInput = ReaderId;
-            var readingHistory = new ReadingHistory
+            try
             {
-                Notes = "",
-                Status = "pending",
-            };
-            readingHistory.Price = Price;
-            readingHistory.HourId = HourId;
-            readingHistory.UserId = UserId;
-            readingHistory.ReaderId = ReaderIdInput;
-            _context.ReadingHistories.Add(readingHistory);
-            _context.SaveChanges();
-            TempData["Message"] = "Booking successful!";
+                var HourId = SelectedSlot;
+                var UserId = HttpContext.Session.GetInt32("userId");
+                var ReaderIdInput = ReaderId;
+                var readingHistory = new ReadingHistory
+                {
+                    Notes = "",
+                    Status = "pending",
+                    Price = Price,
+                    HourId = HourId,
+                    UserId = UserId,
+                    ReaderId = ReaderIdInput
+                };
+                _context.ReadingHistories.Add(readingHistory);
+                _context.SaveChanges();
+                TempData["Message"] = "Đã đặt thành công";
+                return RedirectToPage();
+            }
+            catch (Exception)
+            {
+                TempData["Message"] = "Có lỗi xảy ra xin vui lòng thử lại sau!";
+                return RedirectToPage();
+            }
+
         }
     }
 }

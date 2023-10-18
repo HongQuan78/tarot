@@ -58,6 +58,7 @@ namespace Tarot.Pages
                     }
                     HttpContext.Session.SetString("fullname", fullname);
                     HttpContext.Session.SetInt32("userId", userId);
+                    HttpContext.Session.SetString("role", currentUser.Role);
                     Response.Redirect("/Index");
                 }
             }

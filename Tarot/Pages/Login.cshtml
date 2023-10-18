@@ -2,6 +2,16 @@
 @model Tarot.Pages.LoginModel
 @{
 }
+<div id="notification" style="display:none; position:fixed; top:20px; right:20px; z-index:1000; background-color:rgba(0,0,0,0.7); padding:15px; border-radius:5px; color:white;">
+    @if (TempData.ContainsKey("Fail"))
+    {
+        <text>@TempData["Fail"]</text>
+    }
+    else if (TempData.ContainsKey("Success"))
+    {
+        <text>@TempData["Success"]</text>
+    }
+</div>
 
 <div class="row">
     <div class="col-6">
@@ -16,7 +26,7 @@
         </div>
         <div class="form-container">
             <form class="text-center" method="post">
-                @if (TempData.ContainsKey("Message"))
+                @if (TempData.ContainsKey("Fail"))
                 {
                     <p class="text-danger">
                         @TempData["Fail"]
@@ -57,6 +67,13 @@
     }
 </style>
 
+<script>
+    $(document).ready(function () {
+        if ($("#notification").text().trim() != "") {
+            $("#notification").slideDown(500).delay(3000).slideUp(500);
+        }
+    });
+</script>
 
 @section Scripts {
     @{

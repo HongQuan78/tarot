@@ -14,7 +14,19 @@ namespace Tarot.Service
 
         public List<ReadingHistory> getReadingHistoryForUser(int? userId)
         {
-            return _tarotOnlineContext.ReadingHistories.Include(o => o.Hour).Where(x => x.UserId == userId).ToList();
+            return _tarotOnlineContext.ReadingHistories.Include(x => x.Reader).ThenInclude(a => a.ReaderNavigation)
+                .Include(o => o.Hour)
+                .Include(u => u.User)
+                .Where(x => x.UserId == userId).ToList();
+        }
+
+        public ReadingHistory GetHistoryForUser(int? historyId)
+        {
+            return _tarotOnlineContext.ReadingHistories.Include(x => x.Reader)
+                .ThenInclude(a => a.ReaderNavigation)
+                .Include(o => o.Hour)
+                .Include(u => u.User)
+                .SingleOrDefault(obj => obj.ReadingId == historyId);
         }
 
         public List<ReadingHistory> getReadingHistoryForReaderDone(int? readerId)

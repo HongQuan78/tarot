@@ -1,74 +1,99 @@
 ﻿@page
 @model Tarot.Pages.ReaderProfileModel
 @{
-    if(Model.currentUserId == null)
+    if (Model.currentUserId == null)
     {
         Response.Redirect("/Index");
     }
 }
-<div class="container" style="margin-left:15%;">
-    <div class="d-flex align-content-around" style="">
-        <div class="img-container">
-            <img src="~/images/reader-avt.png" style="max-width:30%" />
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-3 text-center mb-4">
+            <img src="~/images/reader-avt.png" class="img-fluid rounded-circle" style="max-width:80%" />
         </div>
-        <div class="infor-container" style="background-color: #38054b;color:#FCB831;padding:30px;border-radius:20px">
-            <div class="d-flex">
-                <div class="div1">
-                    <p>Tên: @Model.name</p>
-                    <p>Số Điện Thoại: @Model.phone</p>
-                    <p>Mail: @Model.mail</p>
-                    <form method="post">
-                        <label>Link Meet:</</label>
-                        <input type="text" value="@Model.linkMeet" />
-                        <button class="btn" style="border: 1px solid black; color:#FCB831">Lưu</button>
-                    </form>
-                </div>
-                <div class="div2" style="margin-left:10em">
-                    <p style="font-weight:bold">Khung giờ làm việc: </p>
-                    @for(int i = 0; i < Model.workingHour.Count; i++)
-                    {
-                        <p>Slot @(i+1): @Model.workingHour[i].StartTime - @Model.workingHour[i].EndTime</p>
-                    }             
+        <div class="col-md-8">
+            <div class="bg-38054b text-FCB831 p-4 rounded shadow">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <p>Tên: @Model.name</p>
+                        <p>Số Điện Thoại: @Model.phone</p>
+                        <p>Mail: @Model.mail</p>
+                        <form method="post" class="mt-2">
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="@Model.linkMeet" placeholder="Link Meet" />
+                                <button class="btn btn-outline-FCB831">Lưu</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <strong>Khung giờ làm việc:</strong>
+                        @for (int i = 0; i < Model.workingHour.Count; i++)
+                        {
+                            <p>Slot @(i + 1): @Model.workingHour[i].StartTime - @Model.workingHour[i].EndTime</p>
+                        }
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
-    <div class="d-flex justify-content-around my-3">
-        <div class="booking-container" style="color:#FCB831;background-color:#38054b">
-            <p>Số Sao đã nhận : @((int) Model.rating)</p>
-            <p>Số cuộc gọi: @Model.numberOfCalls</p>
-        </div>
-        <div class="infor-container" style="background-color: #38054b;color:#FCB831;padding:30px;border-radius:20px">
-            <h6 class="text-center">Đã coi</h6>
-            @for(int i = 0; i < Model.readingHistoriesDone.Count; i++)
-            {
-                <p>Slot @(i + 1): @Model.readingHistoriesDone[i].Hour.StartTime - @Model.readingHistoriesDone[i].Hour.EndTime</p>
-            }
-        </div>
-        <div class="infor-container" style="background-color: #38054b;color:#FCB831;padding:30px;border-radius:20px">
-            <h6 class="text-center">Lịch khách đặt</h6>
-            <div>
-                <div class="d-flex">
-                    @for (int i = 0; i < Model.readingHistoriesPending.Count; i++)
-                    {
-                        <div class="time-container" style="padding:20px;">
-                            Slot @(i + 1): @Model.readingHistoriesPending[i].Hour.StartTime - @Model.readingHistoriesPending[i].Hour.EndTime
-                        </div>
-                        <div class="button-container">
-                            <button class="btn" style="background-color:#8e05c2;border-radius:20px;color:#FCB831">Start Meet</button>
-                        </div>
-                        <p></p>
-                    }
-                    
-                </div>
+    <div class="row mt-4">
+        <div class="col-md-4 mb-3">
+            <div class="bg-38054b text-FCB831 p-3 rounded shadow text-center">
+                <p>Số Sao đã nhận : @((int)Model.rating)</p>
+                <p>Số cuộc gọi: @Model.numberOfCalls</p>
             </div>
         </div>
-
+        <div class="col-md-4 mb-3">
+            <div class="bg-38054b text-FCB831 p-3 rounded shadow">
+                <h6 class="text-center">Đã coi</h6>
+                @for (int i = 0; i < Model.readingHistoriesDone.Count; i++)
+                {
+                    <p>Slot @(i + 1): @Model.readingHistoriesDone[i].Hour.StartTime - @Model.readingHistoriesDone[i].Hour.EndTime</p>
+                }
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="bg-38054b text-FCB831 p-3 rounded shadow">
+                <h6 class="text-center">Lịch khách đặt</h6>
+                @for (int i = 0; i < Model.readingHistoriesPending.Count; i++)
+                {
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div>Slot @(i + 1): @Model.readingHistoriesPending[i].Hour.StartTime - @Model.readingHistoriesPending[i].Hour.EndTime</div>
+                        <a href="@Model.linkMeet" class="btn btn-sm btn-8e05c2">Start Meet</a>
+                    </div>
+                }
+            </div>
+        </div>
     </div>
 </div>
 
-
 <style>
+    .bg-38054b {
+        background-color: #38054b;
+    }
 
+    .text-FCB831 {
+        color: #FCB831;
+    }
+
+    .btn-outline-FCB831 {
+        color: #FCB831;
+        border-color: #FCB831;
+    }
+
+        .btn-outline-FCB831:hover {
+            background-color: #FCB831;
+            color: #3e065f;
+        }
+
+    .btn-8e05c2 {
+        background-color: #8e05c2;
+        color: #FCB831;
+        border-radius: 20px;
+    }
+
+        .btn-8e05c2:hover {
+            background-color: #6c0499;
+            color: #3e065f;
+        }
 </style>

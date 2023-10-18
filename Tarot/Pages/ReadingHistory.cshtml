@@ -1,0 +1,42 @@
+﻿@page
+@model Tarot.Pages.ReadingHistoryModel
+@{
+}
+
+<div class="container mt-4">
+    @foreach (var readingHistory in Model.readingHistories)
+    {
+        <div class="card bg-3e065f mb-3 border-FCB831">
+            <div class="card-body">
+                <h5 class="card-title text-FCB831">Thông tin xem</h5>
+                <p class="card-text text-white">Tên người xem: @readingHistory.Reader.ReaderNavigation.Fullname</p>
+                <p class="card-text text-white">Thời gian: @readingHistory.Hour.StartTime đến @readingHistory.Hour.EndTime</p>
+                <a href="/meetingdetail/@readingHistory.ReadingId" class="btn btn-outline-FCB831">Xem detail</a>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .bg-3e065f {
+        background-color: #3e065f;
+    }
+
+    .border-FCB831 {
+        border-color: #FCB831 !important;
+    }
+
+    .text-FCB831 {
+        color: #FCB831;
+    }
+
+    .btn-outline-FCB831 {
+        color: #FCB831;
+        border-color: #FCB831;
+    }
+
+        .btn-outline-FCB831:hover {
+            background-color: #FCB831;
+            color: #3e065f;
+        }
+</style>

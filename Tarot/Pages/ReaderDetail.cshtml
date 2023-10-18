@@ -4,6 +4,13 @@
 }
 
 <form method="post">
+    @if (TempData["Message"] != null)
+    {
+        var isSuccess = TempData["Message"].ToString().Contains("Đã đặt thành công");
+        <div class="alert @((isSuccess) ? "alert-success" : "alert-danger")">
+            @TempData["Message"]
+        </div>
+    }
     <div class="container d-flex justify-content-center" style="min-height: 100vh; background-color: #3e065f;">
         <div class="d-flex flex-wrap">
             <div class="img-container my-5">
