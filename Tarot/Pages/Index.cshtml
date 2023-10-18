@@ -215,6 +215,43 @@
             z-index: 100; /* Đảm bảo lá bài đang được di chuột lên sẽ xuất hiện ở phía trên cùng */
             transform: scale(1.1); /* Lá bài sẽ phóng to một chút khi di chuột lên */
         }
+
+    .selected-card-container{
+        margin-bottom: 250px !important;
+    }
+
+    .cardDraw img{
+        margin-bottom: 100px;
+    }
+    .cardDraw{
+        
+        width: 200px !important;
+        height: 250px !important;
+    }
+    .card-container {
+        width: 100px; /* Đồng bộ kích thước này với .card */
+        height: 150px; /* Đồng bộ kích thước này với .card */
+        perspective: 1000px;
+    }
+
+    .card {
+        margin: 0; /* Loại bỏ margin thừa */
+        padding: 0; /* Loại bỏ padding thừa */
+        position: relative;
+        transition: transform 0.5s;
+        transform-style: preserve-3d;
+        cursor: pointer;
+        box-sizing: border-box; /* Đảm bảo padding và border không làm tăng kích thước của box */
+    }
+
+    #selected-card-block .card-container {
+        margin-right: 10em; /* Tăng khoảng cách giữa các lá bài */
+    }
+
+        #selected-card-block .card-container:last-child {
+            margin-right: 0; /* Lá bài cuối cùng không cần khoảng cách ở bên phải */
+        }
+
 </style>
 <script>
     let flippedCount = 0;

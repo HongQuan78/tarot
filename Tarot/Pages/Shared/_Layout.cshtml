@@ -4,14 +4,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] Tarot </title>
+    <title>@ViewData["Title"] Tarot</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Tarot.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="icon" type="image/x-icon" href="~/favicon.ico">
 </head>
-<body>
+<body style="scrol">
     <div class="content-wrapper">
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark bg-black">
@@ -69,15 +69,15 @@
                         <img src="~/images/logo.png" style="max-width:40%" />
                     </div>
                     <div class="col-md-3">
-                        <h5>About</h5>
-                        <ul>
+                        <h5 class="text-start mx-5">About</h5>
+                        <ul class="text-start" style="list-style:none">
                             <li><a href="/" class="text-white">Our Project</a></li>
                             <li><a href="/" class="text-white">Career</a></li>
                         </ul>
                     </div>
                     <div class="col-md-3">
-                        <h5>Supports</h5>
-                        <ul>
+                        <h5 class="text-start mx-5">Supports</h5>
+                        <ul class="text-start" style="list-style:none">
                             <li><a href="/" class="text-white">Supports Service</a></li>
                         </ul>
                     </div>
@@ -105,10 +105,16 @@
         }
 
         body {
-            background-image: url('https://c.wallhere.com/photos/73/91/night_sky_space_stars-71706.jpg!d');
+            max-width: 100vw;
+            overflow-x: hidden;
+            background-image: url('@Url.Content("~/images/background.png")');
             background-size: cover; /* Optional: to cover the entire viewport */
+            -ms-overflow-style: none; /* Internet Explorer và Edge */
+            scrollbar-width: none; /* Firefox */
+            overflow: -moz-scrollbars-none; /* Cách khác cho Firefox */
         }
     </style>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
