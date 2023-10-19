@@ -7,21 +7,25 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Tarot.Data;
+using Tarot.Service;
 
 namespace Tarot.Pages.Admin.MeaningManagement
 {
     public class EditModel : PageModel
     {
-        private readonly Tarot.Data.TarotOnlineContext _context;
+        private readonly Tarot.Data.TarotOnlineContext _context; 
+        public int? currentUserId { get; set; }
+        private AccountService _accountService;
         public SelectList TypeList { get; } = new SelectList(new[]
 {
         new { Id = "light", Name = "Light" },
         new { Id = "shadow", Name = "Shadow" },
     }, "Id", "Name");
 
-        public EditModel(Tarot.Data.TarotOnlineContext context)
+        public EditModel(Tarot.Data.TarotOnlineContext context, AccountService accountService)
         {
             _context = context;
+            _accountService = accountService;
         }
 
         [BindProperty]
@@ -29,12 +33,22 @@ namespace Tarot.Pages.Admin.MeaningManagement
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            currentUserId = HttpContext.Session.GetInt32("userId");
+            if (currentUserId == null)
+            {
+                return Redirect("/Index");
+            }
+
+            if (_accountService.getRole(currentUserId) != "admin")
+            {
+                return Redirect("/Index");
+            }
             if (id == null || _context.Meanings == null)
             {
                 return NotFound();
             }
 
-            var meaning =  await _context.Meanings.FirstOrDefaultAsync(m => m.MeaningId == id);
+            var meaning = await _context.Meanings.FirstOrDefaultAsync(m => m.MeaningId == id);
             if (meaning == null)
             {
                 return NotFound();
@@ -75,7 +89,7 @@ namespace Tarot.Pages.Admin.MeaningManagement
 
         private bool MeaningExists(int id)
         {
-          return (_context.Meanings?.Any(e => e.MeaningId == id)).GetValueOrDefault();
+            return (_context.Meanings?.Any(e => e.MeaningId == id)).GetValueOrDefault();
         }
     }
 }
