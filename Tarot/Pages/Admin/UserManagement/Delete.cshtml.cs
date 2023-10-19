@@ -33,12 +33,12 @@ namespace Tarot.Pages.Admin.UserManagement
             currentUserId = HttpContext.Session.GetInt32("userId");
             if (currentUserId == null)
             {
-                Response.Redirect("/Index");
+                return Redirect("/Index");
             }
 
             if (accountService.getRole(currentUserId) != "admin")
             {
-                Response.Redirect("/Index");
+                return Redirect("/Index");
             }
             if (id == null || _context.Users == null)
             {

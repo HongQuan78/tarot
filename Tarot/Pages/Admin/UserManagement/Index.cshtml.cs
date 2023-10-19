@@ -27,22 +27,24 @@ namespace Tarot.Pages.Admin.UserManagement
 
         public IList<User> User { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public async Task<ActionResult> OnGetAsync()
         {
             currentUserId = HttpContext.Session.GetInt32("userId");
             if (currentUserId == null)
             {
-                Response.Redirect("/Index");
+                return Redirect("/Index");
             }
 
             if (accountService.getRole(currentUserId) != "admin")
             {
-                Response.Redirect("/Index");
+                return Redirect("/Index");
             }
+
             if (_context.Users != null)
             {
                 User = await _context.Users.ToListAsync();
             }
+            return Page();
         }
     }
 }

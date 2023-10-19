@@ -1,0 +1,154 @@
+﻿@page
+@model Tarot.Pages.Admin.MeaningManagement.IndexModel
+
+@{
+    ViewData["Title"] = "pikachu";
+    int totalPages = (int)Math.Ceiling((decimal)Model.TotalRecords / Model.PageSize);
+}
+
+<h1 class="custom-title">Tarot Meanings</h1>
+
+
+
+<div class="table-container mx-auto" style="max-width:90%">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Meaning[0].Meaning1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Meaning[0].Type)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Meaning)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Meaning1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.MeaningId">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.MeaningId">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.MeaningId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="text-center my-4">
+    @{
+        int startPage = Model.CurrentPage - 2;
+        int endPage = Model.CurrentPage + 2;
+
+        if (startPage <= 0)
+        {
+            endPage -= (startPage - 1);
+            startPage = 1;
+        }
+
+        if (endPage > totalPages)
+        {
+            endPage = totalPages;
+            if (endPage > 5)
+            {
+                startPage = endPage - 4;
+            }
+        }
+    }
+
+    @if (Model.CurrentPage > 1)
+    {
+        <a href="?currentPage=1" class="pagination-button">First</a>
+        <a href="?currentPage=@(Model.CurrentPage - 1)" class="pagination-button">Previous</a>
+    }
+
+    @for (var i = startPage; i <= endPage; i++)
+    {
+        if (i == Model.CurrentPage)
+        {
+            <span class="pagination-button" style="background-color:#ffe50e; color:#5a1473;">@i</span>
+        }
+        else
+        {
+            <a href="?currentPage=@i" class="pagination-button">@i</a>
+        }
+    }
+
+    @if (Model.CurrentPage < totalPages)
+    {
+        <a href="?currentPage=@(Model.CurrentPage + 1)" class="pagination-button">Next</a>
+        <a href="?currentPage=@totalPages" class="pagination-button">Last</a>
+    }
+</div>
+
+<div class="text-center my-4">
+    <a asp-page="Create" class="custom-button">Thêm nội dung</a>
+</div>
+<style>
+    .custom-title {
+        color: #ffe50e;
+        text-align: center;
+    }
+
+    .custom-button {
+        color: #ffe50e;
+        background-color: #5a1473;
+        padding: 10px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    body {
+        background-color: #6b1787;
+        color: #ffe50e;
+    }
+
+    .table-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        color: #ffe50e !important;
+        border-radius: 30px;
+    }
+
+        .table th,
+        .table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #fff;
+        }
+
+        .table tr {
+            background-color: #6b1787;
+        }
+
+            .table tr:nth-child(odd) {
+                background-color: #5a1473;
+            }
+
+    .pagination-button {
+        display: inline-block;
+        padding: 5px 8px;
+        margin: 0 2px;
+        border-radius: 15px;
+        background-color: #5a1473;
+        color: #ffe50e;
+        text-decoration: none;
+        font-weight: bold;
+    }
+</style>

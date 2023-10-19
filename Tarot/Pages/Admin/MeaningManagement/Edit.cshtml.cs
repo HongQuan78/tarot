@@ -8,11 +8,16 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Tarot.Data;
 
-namespace Tarot.Pages.Admin.Test
+namespace Tarot.Pages.Admin.MeaningManagement
 {
     public class EditModel : PageModel
     {
         private readonly Tarot.Data.TarotOnlineContext _context;
+        public SelectList TypeList { get; } = new SelectList(new[]
+{
+        new { Id = "light", Name = "Light" },
+        new { Id = "shadow", Name = "Shadow" },
+    }, "Id", "Name");
 
         public EditModel(Tarot.Data.TarotOnlineContext context)
         {

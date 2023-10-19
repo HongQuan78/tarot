@@ -27,22 +27,23 @@ namespace Tarot.Pages.Admin.DeckManagement
 
         public IList<Deck> Deck { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public async Task<ActionResult> OnGetAsync()
         {
             currentUserId = HttpContext.Session.GetInt32("userId");
             if (currentUserId == null)
             {
-                Response.Redirect("/Index");
+                return Redirect("/Index");
             }
 
             if (accountService.getRole(currentUserId) != "admin")
             {
-                Response.Redirect("/Index");
+                return Redirect("/Index");
             }
             if (_context.Decks != null)
             {
                 Deck = await _context.Decks.ToListAsync();
             }
+            return Page();
         }
     }
 }

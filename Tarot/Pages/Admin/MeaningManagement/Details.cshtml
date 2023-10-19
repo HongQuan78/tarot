@@ -1,0 +1,65 @@
+﻿@page
+@model Tarot.Pages.Admin.MeaningManagement.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+    .custom-title {
+        font-size: 24px;
+        color: #FCB831;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .custom-user-details {
+        background-color: #3E065F;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .custom-label {
+        font-weight: bold;
+        color: #f4de11;
+    }
+
+    .custom-value {
+        color: #FFFFFF;
+    }
+
+    .custom-links {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .custom-link {
+        color: #FCB831;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+</style>
+
+<h1 class="custom-title">Details</h1>
+<div class="details-container mx-auto" style="max-width:90%">
+    <div>
+        <dl class="row custom-label">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Meaning.Meaning1)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Meaning.Meaning1)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Meaning.Type)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Meaning.Type)
+            </dd>
+        </dl>
+    </div>
+    <div class="custom-links">
+        <a asp-page="./Edit" class="custom-link" asp-route-id="@Model.Meaning?.MeaningId">Edit</a> |
+        <a asp-page="./Index" class="custom-link">Back to List</a>
+    </div>
+</div>

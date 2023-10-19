@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Tarot.Data;
 
-namespace Tarot.Pages.Admin.Test
+namespace Tarot.Pages.Admin.MeaningManagement
 {
     public class CreateModel : PageModel
     {

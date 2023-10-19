@@ -26,12 +26,12 @@ namespace Tarot.Pages.Admin.CardImageManagement
             currentUserId = HttpContext.Session.GetInt32("userId");
             if (currentUserId == null)
             {
-                Response.Redirect("/Index");
+                return Redirect("/Index");
             }
 
             if (accountService.getRole(currentUserId) != "admin")
             {
-                Response.Redirect("/Index");
+                return Redirect("/Index");
             }
             ViewData["CardId"] = new SelectList(_context.TarotCards, "CardId", "Name");
             ViewData["DeckId"] = new SelectList(_context.Decks, "DeckId", "Type");

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Tarot.Data;
 
-namespace Tarot.Pages.Admin.Test
+namespace Tarot.Pages.Admin.MeaningManagement
 {
     public class DeleteModel : PageModel
     {

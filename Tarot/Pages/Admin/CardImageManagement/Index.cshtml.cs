@@ -27,17 +27,17 @@ namespace Tarot.Pages.Admin.CardImageManagement
 
         public IList<CardImage> CardImage { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        public async Task<ActionResult> OnGetAsync()
         {
             currentUserId = HttpContext.Session.GetInt32("userId");
             if (currentUserId == null)
             {
-                Response.Redirect("/Index");
+                return Redirect("/Index");
             }
 
             if (accountService.getRole(currentUserId) != "admin")
             {
-                Response.Redirect("/Index");
+                return Redirect("/Index");
             }
             if (_context.CardImages != null)
             {
@@ -45,6 +45,7 @@ namespace Tarot.Pages.Admin.CardImageManagement
                 .Include(c => c.Card)
                 .Include(c => c.Deck).ToListAsync();
             }
+            return Page();
         }
     }
 }
