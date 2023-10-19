@@ -7,16 +7,23 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Tarot.Data;
+using Tarot.Service;
 
 namespace Tarot.Pages.Admin.DeckManagement
 {
     public class EditModel : PageModel
     {
+        public AccountService accountService;
+        public ReadingService readingService;
+        [BindProperty]
+        public int? currentUserId { get; set; }
         private readonly Tarot.Data.TarotOnlineContext _context;
 
         public EditModel(Tarot.Data.TarotOnlineContext context)
         {
             _context = context;
+            accountService = new AccountService();
+            readingService = new ReadingService();
         }
 
         [BindProperty]
@@ -24,6 +31,16 @@ namespace Tarot.Pages.Admin.DeckManagement
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            currentUserId = HttpContext.Session.GetInt32("userId");
+            if (currentUserId == null)
+            {
+                Response.Redirect("/Index");
+            }
+
+            if (accountService.getRole(currentUserId) != "admin")
+            {
+                Response.Redirect("/Index");
+            }
             if (id == null || _context.Decks == null)
             {
                 return NotFound();
