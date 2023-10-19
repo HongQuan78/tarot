@@ -31,7 +31,7 @@ namespace Tarot.Pages.Admin.DeckManagement
         {
             currentUserId = HttpContext.Session.GetInt32("userId");
             if (currentUserId == null)
-            {
+            { 
                 return Redirect("/Index");
             }
 

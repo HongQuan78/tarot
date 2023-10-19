@@ -4,39 +4,91 @@
 @{
     ViewData["Title"] = "Index";
 }
+<div class="table-container mx-auto" style="max-width: 90%">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Deck[0].Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Deck[0].ImageUrl)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Deck)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImageUrl)
+                    </td>
+                  
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.DeckId" style="color: #ffe50e; font-weight: bold;">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.DeckId" style="color: #75abcd; font-weight: bold;">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.DeckId" style="color: #f7665e; font-weight: bold;">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
-<h1>Index</h1>
+<div class="text-center my-4">
+    <a asp-page="Create" class="custom-button">Thêm người dùng</a>
+</div>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Deck[0].Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Deck[0].ImageUrl)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Deck) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.DeckId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.DeckId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.DeckId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<style>
+    .custom-title {
+        color: #ffe50e;
+        text-align: center;
+    }
+
+    .custom-button {
+        color: #ffe50e;
+        background-color: #5a1473;
+        padding: 10px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    body {
+        background-color: #6b1787;
+        color: #ffe50e;
+    }
+
+    .table-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        color: #ffe50e !important;
+        border-radius: 30px;
+    }
+
+        .table th,
+        .table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #fff;
+        }
+
+        .table tr {
+            background-color: #6b1787;
+        }
+
+            .table tr:nth-child(odd) {
+                background-color: #5a1473;
+            }
+
+</style>

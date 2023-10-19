@@ -5,42 +5,52 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1 class ="text-center my-3" style="color:#FCB831;">Create</h1>
 
-<h4>Deck</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 offset-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Deck.Type" class="control-label"></label>
-                <input asp-for="Deck.Type" class="form-control" />
+                <label asp-for="Deck.Type" class="control-label custom-label"></label>
+                <input asp-for="Deck.Type" class="form-control custom-input" />
                 <span asp-validation-for="Deck.Type" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Deck.ImageUrl" class="control-label"></label>
-                <input asp-for="Deck.ImageUrl" class="form-control" />
+                <label asp-for="Deck.ImageUrl" class="control-label custom-label"></label>
+                <input asp-for="Deck.ImageUrl" class="form-control custom-input" />
                 <span asp-validation-for="Deck.ImageUrl" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group text-center my-4">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="Index">Back to List</a>
+<div class="text">
+    <a asp-page="Index" class="btn btn-sm btn-outline-info">Back to List</a>
 </div>
 <style>
-    .btn-custom {
-        font-size: 20px;
-        font-weight: bold;
-        color: #fcb831 !important;
-        background-color: #700b97 !important;
-        width: 50%;
-        border-radius: 30px;
+    .custom-label {
+        color: #f4de11;
+        padding: 10px 15px;
+        border-radius: 10px;
+        margin-right: 50px; /* Space between label and input */
+    }
+
+    .custom-input {
+        color: #f4de11 !important;
+        background-color: #3E065F !important
+        width: 500px !important;
+        padding: 5px 10px !important;
+        border-radius: 5px !important;
+        flex-grow: 1 !important;
+    }
+
+    .text-danger {
+        font-size: 15px;
+        color: #f7665e !important;
     }
 
 </style>
