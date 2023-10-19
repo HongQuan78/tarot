@@ -1,0 +1,48 @@
+﻿@page
+@model Tarot.Pages.Admin.CardImageManagement.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CardImage[0].ImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CardImage[0].Card)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CardImage[0].Deck)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.CardImage) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Card.CardId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deck.DeckId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ImageId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ImageId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ImageId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

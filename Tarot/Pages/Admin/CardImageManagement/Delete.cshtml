@@ -1,0 +1,40 @@
+﻿@page
+@model Tarot.Pages.Admin.CardImageManagement.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>CardImage</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CardImage.ImageUrl)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CardImage.ImageUrl)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CardImage.Card)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CardImage.Card.CardId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CardImage.Deck)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CardImage.Deck.DeckId)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="CardImage.ImageId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
