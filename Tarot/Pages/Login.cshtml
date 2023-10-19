@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Đăng nhập";
 }
+<link rel="stylesheet" href="~/css/Login.css" type="text/css" />
 <div id="notification" style="display:none; position:fixed; top:20px; right:20px; z-index:1000; background-color:rgba(0,0,0,0.7); padding:15px; border-radius:5px; color:white;">
     @if (TempData.ContainsKey("Fail"))
     {
@@ -48,25 +49,7 @@
         </div>
     </div>
 </div>
-<style>
-    input {
-        background-color: #700b97 !important;
-        color: #fcb831 !important;
-    }
 
-    .btn-custom{
-        font-size:20px;
-        font-weight:bold;
-        color: #fcb831 !important;
-        background-color: #700b97 !important;
-        width: 50%;
-        border-radius: 30px;
-    }
-
-    .img-login{
-        padding-left: 300px;
-    }
-</style>
 
 <script>
     $(document).ready(function () {

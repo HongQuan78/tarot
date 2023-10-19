@@ -1,5 +1,6 @@
 ﻿@page
 @model Tarot.Pages.UserProfileModel
+
 @{
 }
 
@@ -9,13 +10,12 @@
     </div>
     <div class="row" style="color: #FCB831">
         <div class="col-4 offset-2">
-            <p>Tên: Hồng Quân</p>
-            <p>Số điện thoại: </p>
-            <p>Gmail: haha@haha.haha</p>
+            <p>Tên: @Model.user.Fullname</p>
+            <p>Số điện thoại: @Model.user.Phone</p>
+            <p>Gmail: @Model.user.Email</p>
         </div>
         <div class="col-4 offset-2">
-            <p>Giới tính: Nam</p>
-            <p>Tuổi: 21</p>
+            <p>Giới tính: @Model.user.Gender</p>
         </div>
     </div>
     <div class="row">

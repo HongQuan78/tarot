@@ -1,0 +1,22 @@
+﻿
+.bg-3e065f {
+    background-color: #3e065f;
+}
+
+.border-FCB831 {
+    border-color: #FCB831 !important;
+}
+
+.text-FCB831 {
+    color: #FCB831;
+}
+
+.btn-outline-FCB831 {
+    color: #FCB831;
+    border-color: #FCB831;
+}
+
+    .btn-outline-FCB831:hover {
+        background-color: #FCB831;
+        color: #3e065f;
+    }

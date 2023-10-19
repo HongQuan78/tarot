@@ -38,17 +38,42 @@
                         }
                         else
                         {
-                            <div class="d-flex align-content-end">
-                                @if (IHttpContextAccessor.HttpContext.Session.GetString("role") == "reader")
-                                {
-                                    <a class="btn px-2 text-white text-decoration-underline" href="/readerprofile">Xem lịch hẹn</a>
-                                }
-                                else
-                                {
-                                    <a class="btn px-2 text-white text-decoration-underline" href="/readinghistory">Quẻ bói của bạn</a>
-
-                                }
-                                <a class="btn px-2 text-white text-decoration-underline" href="/logout">Đăng xuất</a>
+                            <div class="d-none d-lg-block">
+                                <div class="dropdown-container">
+                                    
+                                    <div class="nav-item dropdown">
+                                        <button class="btn px-2 text-white dropdown-toggle" href="#" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa-solid fa-user" style="color: #ffffff;"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                            @if (IHttpContextAccessor.HttpContext.Session.GetString("role") == "reader")
+                                            {
+                                                <li><a class="dropdown-item" href="/readerprofile">Xem lịch hẹn</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li><a class="dropdown-item" href="/readinghistory">Quẻ bói của bạn</a></li>
+                                            }
+                                            <li><a class="dropdown-item" href="/userprofile">Thông tin người dùng</a></li>
+                                            <li><a class="dropdown-item" href="/logout">Đăng xuất</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-block d-lg-none">
+                                <ul class="navbar-nav">
+                                    @if (IHttpContextAccessor.HttpContext.Session.GetString("role") == "reader")
+                                    {
+                                        <li class="nav-item"><a class="nav-link" href="/readerprofile">Xem lịch hẹn</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li class="nav-item"><a class="nav-link" href="/readinghistory">Quẻ bói của bạn</a></li>
+                                    }
+                                    <li class="nav-item"><a class="nav-link" href="/userprofile">Thông tin người dùng</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/logout">Đăng xuất</a></li>
+                                </ul>
                             </div>
                         }
 
@@ -94,6 +119,28 @@
 
 
     <style>
+     
+  
+        .dropdown-menu {
+            background-color: transparent; /* Transparent background */
+            border: none; /* No border */
+            box-shadow: none; /* No shadow */
+        }
+
+            /* Styling the links inside the dropdown */
+            .dropdown-menu .dropdown-item {
+                color: white;
+                background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+                transition: background-color 0.3s; /* Smooth transition for hover effect */
+            }
+
+                .dropdown-menu .dropdown-item:hover {
+                    color: #fcb831;
+                    background-color: #3e065f; /* Darker background on hover */
+                }
+
+
+
         .footer {
             position: absolute;
             left: 0;

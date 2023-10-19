@@ -1,5 +1,6 @@
 ﻿@page
 @model IndexModel
+<link rel="stylesheet" href="~/css/Index.css" type="text/css" />
 @{
     ViewData["Title"] = "Home page";
     var deckId = 0;
@@ -87,172 +88,7 @@
         </p>
     </div>
 </div>
-<style>
 
-    
-    #meanings-output{
-        margin-left: auto;
-        margin-right: auto;
-        width: 50%; /* Bạn có thể điều chỉnh giá trị này để thay đổi độ rộng của ô */
-        padding: 20px;
-        border: 1px solid #FCB831; /* Đây chỉ là viền màu vàng, bạn có thể loại bỏ nếu không muốn */
-        border-radius: 10px; /* Làm mềm góc của ô */
-        display: none;
-    }
-    #meanings-output p{
-        text-align:left;
-        padding: 10px;
-        font-size:20px;
-    }
-    .btn-custom {
-        width: 50%;
-        height: 100%;
-        color: white;
-        font-size: 20px;
-        font-weight: bold;
-        border-radius: 10px;
-    }
-
-    .img-container {
-        background-image: url("images/main.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        height: 50vh;
-    }
-
-    .card-choose-lable {
-        font-size: 20px;
-        font-weight: bold;
-        color: white;
-        background-color: #3c393c;
-        width: 150px;
-        padding: 10px;
-        border-radius: 10px;
-    }
-
-    .select-container {
-        width: 80%;
-    }
-
-        .select-container select {
-            border-radius: 10px;
-            font-size: 20px;
-            font-weight: bold;
-            color: white;
-            width: 100%;
-        }
-
-    #selected-card-block img:hover {
-        cursor: pointer;
-    }
-
-    .not-selected-card-container {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .card {
-        width: 100px; /* Điều chỉnh kích thước của lá bài */
-        height: 150px;
-        margin-right: -50px; /* Khoảng cách giữa các lá bài */
-        position: relative;
-        background-color: transparent;
-    }
-
-        .card img {
-            max-width: 100%;
-        }
-
-
-    .card-container {
-        perspective: 1000px;
-        width: 200px; /* Adjust width as needed */
-        height: 300px; /* Adjust height as needed */
-    }
-
-    .card {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        transition: transform 0.5s;
-        transform-style: preserve-3d;
-        cursor: pointer;
-    }
-
-    .card-back, .card-front {
-        position: absolute;
-        top: 0;
-        left: 0;
-        backface-visibility: hidden;
-        width: 100%;
-        height: 100%;
-    }
-
-    .card-front {
-        transform: rotateY(180deg);
-    }
-
-    .card.flipped {
-        transform: rotateY(180deg);
-    }
-
-    #selected-card-block .card-container {
-        margin-right: 20px; /* Khoảng cách giữa các lá bài */
-    }
-
-        #selected-card-block .card-container:last-child {
-            margin-right: 0;
-        }
-
-    .not-selected-card-container .card-container {
-        margin-left: -30px; /* Điều chỉnh khoảng cách này để tăng/giảm độ chồng chéo */
-        z-index: 1;
-    }
-
-        .not-selected-card-container .card-container:hover {
-            z-index: 100; /* Đảm bảo lá bài đang được di chuột lên sẽ xuất hiện ở phía trên cùng */
-            transform: scale(1.1); /* Lá bài sẽ phóng to một chút khi di chuột lên */
-        }
-
-    .selected-card-container{
-        margin-bottom: 250px !important;
-    }
-
-    .cardDraw img{
-        margin-bottom: 100px;
-    }
-    .cardDraw{
-        
-        width: 200px !important;
-        height: 250px !important;
-    }
-    .card-container {
-        width: 100px; /* Đồng bộ kích thước này với .card */
-        height: 150px; /* Đồng bộ kích thước này với .card */
-        perspective: 1000px;
-    }
-
-    .card {
-        margin: 0; /* Loại bỏ margin thừa */
-        padding: 0; /* Loại bỏ padding thừa */
-        position: relative;
-        transition: transform 0.5s;
-        transform-style: preserve-3d;
-        cursor: pointer;
-        box-sizing: border-box; /* Đảm bảo padding và border không làm tăng kích thước của box */
-    }
-
-    #selected-card-block .card-container {
-        margin-right: 10em; /* Tăng khoảng cách giữa các lá bài */
-    }
-
-        #selected-card-block .card-container:last-child {
-            margin-right: 0; /* Lá bài cuối cùng không cần khoảng cách ở bên phải */
-        }
-
-</style>
 <script>
     let flippedCount = 0;
 
@@ -340,3 +176,8 @@
 
 
 </script>
+
+        <style>
+
+   
+        </style>

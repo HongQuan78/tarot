@@ -1,0 +1,99 @@
+﻿@page
+@model Tarot.Pages.Admin.UserManagement.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+    .custom-title {
+        font-size: 24px;
+        color: #FCB831;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .custom-user-details {
+        background-color: #3E065F;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .custom-label {
+        font-weight: bold;
+        color: #f4de11;
+    }
+
+    .custom-value {
+        color: #FFFFFF;
+    }
+
+    .custom-links {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .custom-link {
+        color: #FCB831;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+</style>
+
+<div class="custom-title">Thông tin người dùng</div>
+<div class="custom-user-details mx-auto" style="max-width:90%">
+    <dl class="row">
+        <dt class="col-sm-2 custom-label">
+            @Html.DisplayNameFor(model => model.User.Username)
+        </dt>
+        <dd class="col-sm-10 custom-value">
+            @Html.DisplayFor(model => model.User.Username)
+        </dd>
+        <dt class="col-sm-2 custom-label">
+            @Html.DisplayNameFor(model => model.User.Email)
+        </dt>
+        <dd class="col-sm-10 custom-value">
+            @Html.DisplayFor(model => model.User.Email)
+        </dd>
+        <dt class="col-sm-2 custom-label">
+            @Html.DisplayNameFor(model => model.User.Password)
+        </dt>
+        <dd class="col-sm-10 custom-value">
+            @Html.DisplayFor(model => model.User.Password)
+        </dd>
+        <dt class="col-sm-2 custom-label">
+            @Html.DisplayNameFor(model => model.User.Fullname)
+        </dt>
+        <dd class="col-sm-10 custom-value">
+            @Html.DisplayFor(model => model.User.Fullname)
+        </dd>
+        <dt class="col-sm-2 custom-label">
+            @Html.DisplayNameFor(model => model.User.Phone)
+        </dt>
+        <dd class="col-sm-10 custom-value">
+            @Html.DisplayFor(model => model.User.Phone)
+        </dd>
+        <dt class="col-sm-2 custom-label">
+            @Html.DisplayNameFor(model => model.User.Gender)
+        </dt>
+        <dd class="col-sm-10 custom-value">
+            @Html.DisplayFor(model => model.User.Gender)
+        </dd>
+        <dt class="col-sm-2 custom-label">
+            @Html.DisplayNameFor(model => model.User.Birthday)
+        </dt>
+        <dd class="col-sm-10 custom-value">
+            @Html.DisplayFor(model => model.User.Birthday)
+        </dd>
+        <dt class="col-sm-2 custom-label">
+            @Html.DisplayNameFor(model => model.User.Role)
+        </dt>
+        <dd class="col-sm-10 custom-value">
+            @Html.DisplayFor(model => model.User.Role)
+        </dd>
+    </dl>
+</div>
+<div class="custom-links">
+    <a asp-page="./Edit" asp-route-id="@Model.User?.UserId" class="custom-link">Edit</a> |
+    <a asp-page="./Index" class="custom-link">Back to List</a>
+</div>

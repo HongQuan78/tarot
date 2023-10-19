@@ -1,0 +1,50 @@
+﻿@page
+@model Tarot.Pages.Admin.DeckManagement.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Deck</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Deck.Type" class="control-label"></label>
+                <input asp-for="Deck.Type" class="form-control" />
+                <span asp-validation-for="Deck.Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Deck.ImageUrl" class="control-label"></label>
+                <input asp-for="Deck.ImageUrl" class="form-control" />
+                <span asp-validation-for="Deck.ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+<style>
+    .btn-custom {
+        font-size: 20px;
+        font-weight: bold;
+        color: #fcb831 !important;
+        background-color: #700b97 !important;
+        width: 50%;
+        border-radius: 30px;
+    }
+
+</style>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

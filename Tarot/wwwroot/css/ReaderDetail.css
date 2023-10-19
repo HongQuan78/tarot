@@ -1,0 +1,28 @@
+﻿.img-container img {
+    max-width: 100%;
+}
+
+.infor-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Allow it to grow to take available space */
+    max-width: 50%; /* Limit the maximum width */
+}
+
+.time-container {
+    display: flex;
+    flex-direction: column; /* Change to column layout for smaller screens */
+}
+
+.time-slot {
+    background-color: #d9d9d9;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+}
+
+h2 {
+    margin-bottom: 10px;
+}

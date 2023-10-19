@@ -1,0 +1,17 @@
+﻿input {
+    background-color: #700b97 !important;
+    color: #fcb831 !important;
+}
+
+.btn-custom {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fcb831 !important;
+    background-color: #700b97 !important;
+    width: 50%;
+    border-radius: 30px;
+}
+
+.img-login {
+    padding-left: 300px;
+}

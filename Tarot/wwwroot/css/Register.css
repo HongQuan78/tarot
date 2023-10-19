@@ -1,0 +1,39 @@
+﻿.btn-custom {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fcb831 !important;
+    background-color: #8e05c2 !important;
+    width: 30%;
+    border-radius: 30px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center; /* Vertically aligns items in the center */
+    justify-content: start; /* Aligns items to the start of the container */
+    margin-bottom: 20px; /* Space between each form group */
+}
+
+.custom-label {
+    background-color: #3E065F;
+    color: #f4de11;
+    padding: 10px 15px;
+    border-radius: 10px;
+    width: 200px;
+    text-align: center;
+    margin-right: 50px; /* Space between label and input */
+}
+
+.form-container .form-group .custom-input {
+    color: #f4de11;
+    background-color: #3E065F;
+    width: 500px !important;
+    padding: 5px 10px !important;
+    border-radius: 5px !important;
+    flex-grow: 1 !important;
+}
+
+.text-danger {
+    font-size: 15px;
+    color: #f7665e !important;
+}

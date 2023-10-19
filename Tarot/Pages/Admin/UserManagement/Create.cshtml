@@ -1,0 +1,95 @@
+﻿@page
+@model Tarot.Pages.Admin.UserManagement.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="text-center my-3" style="color:#FCB831;">Thêm người dùng</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4 offset-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="User.Username" class="control-label custom-label"></label>
+                <input asp-for="User.Username" class="custom-input" />
+                <span asp-validation-for="User.Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Email" class="control-label custom-label"></label>
+                <input asp-for="User.Email" class="custom-input" />
+                <span asp-validation-for="User.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Password" class="control-label custom-label"></label>
+                <input asp-for="User.Password" type="password" class="custom-input" />
+                <span asp-validation-for="User.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Fullname" class="control-label custom-label"></label>
+                <input asp-for="User.Fullname" class="custom-input" />
+                <span asp-validation-for="User.Fullname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Phone" class="control-label custom-label"></label>
+                <input asp-for="User.Phone" class="custom-input" />
+                <span asp-validation-for="User.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Gender" class="control-label custom-label"></label>
+                <div class="custom-input">
+                    <input type="radio" asp-for="User.Gender" value="Nam" /> Nam
+                    <input type="radio" asp-for="User.Gender" value="Nữ" /> Nữ
+                </div>
+                <span asp-validation-for="User.Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Birthday" class="control-label custom-label"></label>
+                <input asp-for="User.Birthday" type="date" class="custom-input" style="background-color:none !important"/>
+                <span asp-validation-for="User.Birthday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Role" class="control-label custom-label"></label>
+                <select asp-for="User.Role" asp-items="Model.UserRoles" class="custom-input"></select>
+                <span asp-validation-for="User.Role" class="text-danger"></span>
+            </div>
+
+            <div class="form-group text-center my-4">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="text">
+    <a asp-page="Index" class="btn btn-sm btn-outline-info">Back to List</a>
+</div>
+<style>
+    .custom-label {
+        color: #f4de11;
+        padding: 10px 15px;
+        border-radius: 10px;
+        margin-right: 50px; /* Space between label and input */
+    }
+
+   .custom-input {
+        color: #f4de11 !important;
+        background-color: #3E065F;
+        width: 500px !important;
+        padding: 5px 10px !important;
+        border-radius: 5px !important;
+        flex-grow: 1 !important;
+    }
+
+    .text-danger {
+        font-size: 15px;
+        color: #f7665e !important;
+    }
+
+</style>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

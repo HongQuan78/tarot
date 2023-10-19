@@ -1,0 +1,59 @@
+﻿@page
+@model Tarot.Pages.Admin.DeckManagement.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="custom-title">Details</h1>
+
+<div class="custom-deck-details">
+    <h4>Deck</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2 custom-label">
+            @Html.DisplayNameFor(model => model.Deck.Type)
+        </dt>
+        <dd class="col-sm-10 custom-value">
+            @Html.DisplayFor(model => model.Deck.Type)
+        </dd>
+        <dt class="col-sm-2 custom-label">
+            @Html.DisplayNameFor(model => model.Deck.ImageUrl)
+        </dt>
+        <dd class="col-sm-10 custom-value">
+            @Html.DisplayFor(model => model.Deck.ImageUrl)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Deck?.DeckId" class="custom-link">Edit</a> |
+    <a asp-page="./Index" class="custom-link">Back to List</a>
+</div>
+<style>
+    .custom-title {
+        font-size: 24px;
+        color: #FCB831 !important;
+        margin-top: 20px;
+    }
+
+    .custom-deck-details {
+        background-color: #3E065F;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .custom-label {
+        font-weight: bold;
+        color: #f4de11;
+    }
+
+    .custom-value {
+        color: #FFFFFF;
+    }
+
+    .custom-link {
+        color: #FCB831;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+</style>
